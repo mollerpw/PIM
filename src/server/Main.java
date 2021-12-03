@@ -5,5 +5,5 @@ public class Main {
         System.out.println("hello world");
         System.out.println("test");
     }
-    int lol = 5;
+    
 }
