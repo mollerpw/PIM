@@ -5,4 +5,5 @@ public class Main {
         System.out.println("Hej");
         System.out.println("test");
     }
+    int lol = 5;
 }
