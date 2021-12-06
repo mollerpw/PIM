@@ -38,6 +38,11 @@ public class Main {
         res.json(db.createFolder(folder));
         });
 
+        app.delete("/notes", (req, res) -> {
+            Note notes = req.body(Note.class);
+            String note = notes.getName();
+            db.deleteNote(note);
+        });
 
         app.listen(2000);
         System.out.println("Server started on port 2000");
