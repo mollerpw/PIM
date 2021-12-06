@@ -29,10 +29,11 @@ public class Database {
             while (rs.next()){
                 output += rs.getString("content") + ", ";
             }
-            System.out.println(output);
+            conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
         return output;
     }
     public static void Write(String noteName, String content){
@@ -40,6 +41,7 @@ public class Database {
             Connection conn = DriverManager.getConnection("jdbc:sqlite:PIM.db");
             PreparedStatement stmt = conn.prepareStatement("UPDATE notes SET content='" + content + "', timestamp ='" + LocalDateTime.now() + "' WHERE name='" + noteName + "';");
             stmt.execute();
+            conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -49,6 +51,7 @@ public class Database {
             Connection conn = DriverManager.getConnection("jdbc:sqlite:PIM.db");
             PreparedStatement stmt = conn.prepareStatement("INSERT INTO notes (name, folder, timestamp) VALUES ('" + noteName + "', '" + folder + "', '" + LocalDateTime.now() + "');");
             stmt.execute();
+            conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
