@@ -52,20 +52,33 @@ public class Database {
             stmt.setString(1,folder);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
-                conn.close();
+
                 return false;
             }
             else {
                 PreparedStatement stmtUpdate = conn.prepareStatement("INSERT INTO Folders (name, timestamp) VALUES (?, '"+ LocalDateTime.now() + "');" );
                 stmtUpdate.setString(1,folder);
                 stmtUpdate.execute();
-                conn.close();
+
                 return true;
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
+        }
+
+
+    }
+    public void deleteNote(String note) {
+        try {
+            PreparedStatement stmt = conn.prepareStatement("DELETE FROM Notes WHERE name = ?");
+            stmt.setString(1, note);
+            stmt.executeUpdate();
+
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
     }
 
