@@ -69,4 +69,14 @@ public class Database {
         }
     }
 
+    public void deleteFolder(String folder) {
+        try {
+            PreparedStatement stmt = conn.prepareStatement("DELETE FROM Folders WHERE name = ?");
+            stmt.setString(1, folder);
+            stmt.executeUpdate();
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
