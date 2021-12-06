@@ -27,3 +27,4 @@ postman/
 out/
 .idea/misc.xml
 PIM.db
+*.db
