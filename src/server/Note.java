@@ -6,13 +6,18 @@ public class Note {
     private String content;
     private String timestamp;
 
-    public Note() {} ;
+    public Note() {}
 
     public Note(String name, String folder) {
         this.name = name;
         this.folder = folder;
 
-    } ;
+    }
+
+    public Note(String name, String content, String folder) {
+        this.name = name;
+        this.content = content;
+    }
 
     public String getName() {
         return name;
