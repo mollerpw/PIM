@@ -35,14 +35,21 @@ public class Main {
         Note notes = req.body(Note.class);
         String folder = notes.getFolder();
 
-        boolean createdFolder = db.createFolder(folder);
-        res.json(createdFolder);
+        res.json(db.createFolder(folder));
         });
+
 
         app.delete("/folders", (req, res) -> {
             Note notes = req.body(Note.class);
             String folder = notes.getFolder();
             db.deleteFolder(folder);
+        });
+
+
+        app.delete("/notes", (req, res) -> {
+            Note notes = req.body(Note.class);
+            String note = notes.getName();
+            db.deleteNote(note);
         });
 
 
