@@ -15,6 +15,21 @@ public class Main {
             db.Write(noteName, content);
         });
 
+        app.put("/notes", (req, res) -> {
+           Note notes = req.body(Note.class);
+           String noteName = notes.getName();
+           String outPut = db.Read(noteName);
+           res.json(outPut);
+
+        });
+
+        app.post("/notes", (req, res) -> {
+            Note notes = req.body(Note.class);
+            String noteName = notes.getName();
+            String folder = notes.getFolder();
+            db.Create(noteName, folder);
+        });
+
 
         app.get("/folders", (req, res) -> {
         Note notes = req.body(Note.class);

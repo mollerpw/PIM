@@ -26,3 +26,5 @@ hs_err_pid*
 postman/
 out/
 .idea/misc.xml
+PIM.db
+*.db
