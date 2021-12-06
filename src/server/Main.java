@@ -23,6 +23,13 @@ public class Main {
 
         });
 
+        app.post("/notes", (req, res) -> {
+            Note notes = req.body(Note.class);
+            String noteName = notes.getName();
+            String folder = notes.getFolder();
+            db.Create(noteName, folder);
+        });
+
 
 
         app.listen(2000);
