@@ -56,4 +56,28 @@ public class Database {
             e.printStackTrace();
         }
     }
+    public boolean createFolder(String folder){
+        try {
+            Connection conn = DriverManager.getConnection("jdbc:sqlite:PIM.db");
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Folders WHERE name = ?");
+            stmt.setString(1,folder);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                conn.close();
+                return false;
+            }
+            else {
+                PreparedStatement stmtUpdate = conn.prepareStatement("INSERT INTO Folders (name, timestamp) VALUES (?, "+ LocalDateTime.now() + ");" );
+                stmtUpdate.setString(1,folder);
+                stmt.executeUpdate();
+                conn.close();
+                return true;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 }
