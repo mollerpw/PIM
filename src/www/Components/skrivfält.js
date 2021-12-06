@@ -1,5 +1,5 @@
 function renderWritingField() {
     return `
-        <p>Write here...</p>
+        <textarea id=text>Write here...</textarea>
     `
 }
