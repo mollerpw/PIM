@@ -16,6 +16,14 @@ public class Main {
         });
 
 
+        app.get("/folders", (req, res) -> {
+        Note notes = req.body(Note.class);
+        String folder = notes.getFolder();
+
+        boolean createdFolder = db.createFolder(folder);
+        res.json(createdFolder);
+        });
+
 
         app.listen(2000);
         System.out.println("Server started on port 2000");
