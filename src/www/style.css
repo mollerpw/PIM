@@ -1,0 +1,64 @@
+body {
+    margin: 0;
+}
+
+/* CSS for the header */
+
+header {
+    color: white;
+    background: rgb(2, 2, 71);
+    display: flex;
+}
+
+nav {
+    display: flex;
+    justify-content: space-evenly;
+    flex: 3;
+}
+
+nav a {
+    color: white;
+}
+
+
+
+/* CSS for all the h elements */
+h1 {
+    display: flex;
+    flex: 1;
+}
+
+h2 {
+    background-color: grey;
+    border-left: 6px solid black;
+    color: white;
+    padding: 5px;
+}
+
+
+
+/* CSS for the folder, note and writing field section */
+
+.container {
+    display: flex;
+}
+
+.container div{
+    border-right: 2px solid black;
+    padding: 10px;
+    height: 85vh;
+}
+
+.folder {
+flex: 1;
+}
+
+.notes {
+    flex: 1;
+
+}
+
+.writingfield {
+    flex: 4;
+
+}
