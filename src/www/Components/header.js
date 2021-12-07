@@ -15,6 +15,7 @@ async function saveNote(){
         name: "annat",
         content: "hejsan"
     }
+    console.log(savednote)
     let result = await fetch(`/notes/`, {
         method: "PUT",
         headers: { 'Content-Type': 'application/json' },
