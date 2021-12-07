@@ -2,10 +2,23 @@ function renderHeader() {
     return `
         <h1>PIM</h1>
         <nav>
-            <a href="file">Insert File</a>
-            <a href="picture">Insert Picture</a>
-            <a href="delete">Delete note</a>
-            <a href="save">Save note</a>
+            <button onclick="insertFile()">Insert File</button>
+            <button onclick="insertPicture()">Insert Picture</button>
+            <button onclick="deleteNote()">Delete note</button>
+            <button onclick="saveNote()">Save note</button>
         </nav>
     `
+}
+
+async function saveNote(){
+    let savedNote = {
+        name: "annat",
+        content: "hejsan"
+    }
+    let result = await fetch(`/notes/`, {
+        method: "PUT",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(savedNote)
+    });
+    //let response = await result.json();
 }
