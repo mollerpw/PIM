@@ -25,7 +25,7 @@ async function saveNote(){
 }
 
 async function deleteNote(){
-    let savedNote = {
+    let deletedNote = {
         name: "annat",
         content: "hejhej"
     }
@@ -33,7 +33,22 @@ async function deleteNote(){
     let result = await fetch("/notes", {
         method: "DELETE",
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(savedNote)
+        body: JSON.stringify(deletedNote)
+    });
+    //let response = await result.json();
+}
+
+async function deleteFolder(){
+    let deletedFolder = {
+        name: "annat",
+        content: "hejhej",
+        folder: "skola"
+    }
+
+    let result = await fetch("/folders", {
+        method: "DELETE",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(deletedFolder)
     });
     //let response = await result.json();
 }

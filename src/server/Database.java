@@ -92,9 +92,12 @@ public class Database {
 
     public void deleteFolder(String folder) {
         try {
-            PreparedStatement stmt = conn.prepareStatement("DELETE FROM Folders WHERE name = ?");
+            PreparedStatement stmt = conn.prepareStatement("DELETE FROM Notes WHERE folder = ?");
             stmt.setString(1, folder);
             stmt.executeUpdate();
+            PreparedStatement stmt2 = conn.prepareStatement("DELETE FROM Folders WHERE name = ?");
+            stmt2.setString(1, folder);
+            stmt2.executeUpdate();
         }catch (SQLException e) {
             e.printStackTrace();
         }
