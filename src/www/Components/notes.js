@@ -21,6 +21,7 @@ function addNotePrompt(){
 function addNote(){
     let folderName = document.getElementById("noteInput").value;
 
+    //save note before reloading
     //add to database
     location.reload();
 }
