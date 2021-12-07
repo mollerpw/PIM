@@ -1,8 +1,26 @@
+let notePrompt = false;
+
 function renderNotes() {
     return `
-        <h2>Notes <button class="addButton" Click="addNote">+</button> </h2>
+
         <p>Biology</p>
         <p>Chemistry</p>
         <p>Business Management</p>
-    `
+    `;
+}
+
+function addNotePrompt(){
+    if(!notePrompt){
+        document.querySelector('#notes').insertAdjacentHTML("beforeend", `
+        <input type="text" id="noteInput" name="fname"></input>
+        <button id="noteButton" onClick="addNote()">Add Folder</button>`);
+        notePrompt = true;
+    }
+}
+
+function addNote(){
+    let folderName = document.getElementById("noteInput").value;
+
+    //add to database
+    location.reload();
 }

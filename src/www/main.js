@@ -1,8 +1,8 @@
 document.querySelector('header').innerHTML = renderHeader();
 
-document.querySelector('#folder').innerHTML = renderFolder();
+document.querySelector('#folder').insertAdjacentHTML("beforeend", renderFolder());
 
-document.querySelector('#notes').innerHTML = renderNotes();
+document.querySelector('#notes').insertAdjacentHTML("beforeend", renderNotes());
 
 document.querySelector('#writingfield').innerHTML = renderWritingField();
 
