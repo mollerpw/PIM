@@ -8,6 +8,7 @@ public class Note {
 
     public Note() {}
 
+
     public Note(String name, String folder) {
         this.name = name;
         this.folder = folder;
