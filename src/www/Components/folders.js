@@ -21,6 +21,7 @@ function addFolderPrompt(){
 function addFolder(){
     let folderName = document.getElementById("folderInput").value;
 
+    //save note before reloading
     //add to database
     location.reload();
 }
