@@ -1,12 +1,12 @@
 let folderPrompt = false;
 
 function renderFolder() {
-    return `
-    
-        <p>School</p>
-        <p>Work</p>
-        <p>Art Projects</p>
-    `;
+    let foldernames = await fetch('/folder');
+    let output;
+    for(foldername in foldernames){
+        output += `<p>${foldername.name}</p> <button class="deleteFolderButton" onclick="deleteFolder()"><strong>-</strong></button>`;
+    }
+    return output;
 }
 
 function addFolderPrompt(){
@@ -18,10 +18,16 @@ function addFolderPrompt(){
     }
 }
 
-function addFolder(){
+async function addFolder(){
     let folderName = document.getElementById("folderInput").value;
 
-    //save note before reloading
-    //add to database
+    saveNote();
+
+    await fetch(`/folders/`, {
+        method: "PUT",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(folderName)
+    });
+
     location.reload();
 }
