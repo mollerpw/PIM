@@ -30,7 +30,11 @@ public class Main {
 
         });
 
+        app.get("/folders", (req, res) -> {
+            List<Note> folders = db.readFolder();
+            res.json(folders);
 
+        });
 
         app.post("/notes", (req, res) -> {
             Note notes = (Note) req.getBody(Note.class);
