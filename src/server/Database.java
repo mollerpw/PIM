@@ -1,8 +1,12 @@
 package server;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import express.utils.Utils;
+
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Database {
 
@@ -19,16 +23,19 @@ public class Database {
         }
     }
 
-    public String Read(String noteName){
-        String output = "";
+    public List<Note> Read(){
+        List<Note> notes = null;
         try {
-            PreparedStatement stmt = conn.prepareStatement("SELECT content FROM notes WHERE name='" + noteName + "';");
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Notes");
             ResultSet rs = stmt.executeQuery();
-            output = rs.getString("content") + ", ";
-        } catch (SQLException e) {
+            Note[] notesFromRs = (Note[]) Utils.readResultSetToObject(rs, Note[].class);
+
+            notes = List.of(notesFromRs);
+
+        } catch (SQLException | JsonProcessingException e) {
             e.printStackTrace();
         }
-        return output;
+        return notes;
     }
     public void Write(String noteName, String content){
         try {
@@ -38,6 +45,7 @@ public class Database {
             e.printStackTrace();
         }
     }
+
     public void Create(String noteName, String folder){
         try {
             PreparedStatement stmt = conn.prepareStatement("INSERT INTO notes (name, folder, timestamp) VALUES ('" + noteName + "', '" + folder + "', '" + LocalDateTime.now() + "');");
