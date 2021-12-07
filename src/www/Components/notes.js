@@ -13,7 +13,7 @@ function addNotePrompt(){
     if(!notePrompt){
         document.querySelector('#notes').insertAdjacentHTML("beforeend", `
         <input type="text" id="noteInput" name="fname"></input>
-        <button id="noteButton" onClick="addNote()">Add Folder</button>`);
+        <button id="noteButton" onClick="addNote()">Add Note</button>`);
         notePrompt = true;
     }
 }
