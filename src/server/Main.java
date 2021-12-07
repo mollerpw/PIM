@@ -33,7 +33,7 @@ public class Main {
         });
 
 
-        app.get("/folders", (req, res) -> {
+        app.post("/folders", (req, res) -> {
         Note notes = req.body(Note.class);
         String folder = notes.getFolder();
 
