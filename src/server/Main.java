@@ -36,16 +36,10 @@ public class Main {
             db.Create(noteName, folder);
         });
 
-
-<<<<<<< Updated upstream
         app.post("/folders", (req, res) -> {
-        Note notes = req.body(Note.class);
-=======
-        app.get("/folders", (req, res) -> {
-        Note notes = (Note) req.getBody(Note.class);
->>>>>>> Stashed changes
-        String folder = notes.getFolder();
-        res.json(db.createFolder(folder));
+            Note notes = (Note) req.getBody(Note.class);
+            String folder = notes.getFolder();
+            res.json(db.createFolder(folder));
         });
 
 
