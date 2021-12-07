@@ -38,12 +38,12 @@ public class Database {
         return notes;
     }
 
-    public List<Note> readFolder(){
-        List<Note> folders = null;
+    public List<Folder> readFolder(){
+        List<Folder> folders = null;
         try {
             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Folders");
             ResultSet rs = stmt.executeQuery();
-            Note[] foldersFromRs = (Note[]) Utils.readResultSetToObject(rs, Note[].class);
+            Folder[] foldersFromRs = (Folder[]) Utils.readResultSetToObject(rs, Folder[].class);
 
             folders = List.of(foldersFromRs);
 
