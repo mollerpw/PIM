@@ -13,10 +13,25 @@ function renderHeader() {
 async function saveNote(){
     let savedNote = {
         name: "annat",
-        content: "hejsan"
+        content: "hejhej"
     }
-    let result = await fetch(`/notes/`, {
+
+    let result = await fetch("/notes", {
         method: "PUT",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(savedNote)
+    });
+    //let response = await result.json();
+}
+
+async function deleteNote(){
+    let savedNote = {
+        name: "annat",
+        content: "hejhej"
+    }
+
+    let result = await fetch("/notes", {
+        method: "DELETE",
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(savedNote)
     });
