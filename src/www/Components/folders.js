@@ -1,12 +1,12 @@
 let folderPrompt = false;
 
-function renderFolder() {
-    let foldernames = await fetch('/folder');
-    let output;
-    for(let foldername in foldernames){
-        output += `<p>${foldername.name}</p> <button class="deleteFolderButton" onclick="deleteFolder()"><strong>-</strong></button>`;
+async function renderFolder() {
+    let JSONfoldernames = await (await fetch('/folders')).json();
+    let output = "";
+    for(let foldername of JSONfoldernames){
+        output += `<p id="folderElement">${foldername.name}<button class="deleteFolderButton" onclick="deleteFolder()"><strong>-</strong></button></p>`;
     }
-    return output;
+    document.querySelector("#folder").insertAdjacentHTML("beforeend",output);
 }
 
 function addFolderPrompt(){

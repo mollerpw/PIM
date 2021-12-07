@@ -1,6 +1,6 @@
 document.querySelector('header').innerHTML = renderHeader();
 
-document.querySelector('#folder').insertAdjacentHTML("beforeend", renderFolder());
+renderFolder();
 
 document.querySelector('#notes').insertAdjacentHTML("beforeend", renderNotes());
 
