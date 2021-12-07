@@ -3,7 +3,7 @@ let folderPrompt = false;
 function renderFolder() {
     let foldernames = await fetch('/folder');
     let output;
-    for(foldername in foldernames){
+    for(let foldername in foldernames){
         output += `<p>${foldername.name}</p> <button class="deleteFolderButton" onclick="deleteFolder()"><strong>-</strong></button>`;
     }
     return output;

@@ -3,7 +3,7 @@ function renderHeader() {
         <h1>PIM</h1>
         <nav>
             <button onclick="insertFile()">Insert File</button>
-            <button onclick="insertPicture()">Insert Picture</button>
+            <input type="file" accept="image/*" placeholder="insert picture" onclick="insertPicture()">
             <button onclick="deleteNote()">Delete note</button>
             <button onclick="saveNote()">Save note</button>
         </nav>
@@ -13,13 +13,57 @@ function renderHeader() {
 async function saveNote(){
     let savedNote = {
         name: "annat",
-        content: "hejsan"
+        content: "hejhej"
     }
-    console.log(savednote)
-    let result = await fetch(`/notes/`, {
+
+    let result = await fetch("/notes", {
         method: "PUT",
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(savedNote)
     });
     //let response = await result.json();
+}
+
+async function deleteNote(){
+    let deletedNote = {
+        name: "annat",
+        content: "hejhej"
+    }
+
+    let result = await fetch("/notes", {
+        method: "DELETE",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(deletedNote)
+    });
+    //let response = await result.json();
+}
+
+async function deleteFolder(){
+    let deletedFolder = {
+        name: "annat",
+        content: "hejhej",
+        folder: "skola"
+    }
+
+    let result = await fetch("/folders", {
+        method: "DELETE",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(deletedFolder)
+    });
+    //let response = await result.json();
+}
+
+async function insertPicture() {
+    let files = document.querySelector('input[type=file]').files;
+    let formData = new FormData();
+
+    for(let file of files) {
+        formData.append('files', file, file.name);
+    }
+
+    let uploadResult = await fetch("/notes/pictures", {
+        method: 'POST',
+        body: formData
+    });
+    let imageUrl = await uploadResult.text();
 }
