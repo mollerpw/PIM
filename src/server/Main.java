@@ -2,6 +2,8 @@ package server;
 
 import express.Express;
 
+import java.nio.file.Paths;
+
 public class Main {
     public static void main(String[] args) {
 
@@ -31,7 +33,7 @@ public class Main {
         });
 
 
-        app.get("/folders", (req, res) -> {
+        app.post("/folders", (req, res) -> {
         Note notes = req.body(Note.class);
         String folder = notes.getFolder();
 
