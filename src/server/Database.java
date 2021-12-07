@@ -2,7 +2,10 @@ package server;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import express.utils.Utils;
+import org.apache.commons.fileupload.FileItem;
 
+import java.io.FileOutputStream;
+import java.nio.file.Paths;
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -118,6 +121,19 @@ public class Database {
         }catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public String uploadImage(FileItem image) {
+        String imageUrl = "/images/" + image.getName();
+
+        try (var outPutStream = new FileOutputStream(Paths.get("src/www" + imageUrl).toString())) {
+            outPutStream.write(image.get());
+        }catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+
+        return imageUrl;
     }
 
 }

@@ -2,6 +2,8 @@ package server;
 
 import express.Express;
 import express.middleware.Middleware;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileUploadException;
 
 import java.io.IOException;
 import java.nio.file.Paths;
@@ -34,6 +36,21 @@ public class Main {
             List<Folder> folders = db.readFolder();
             res.json(folders);
 
+        });
+
+        app.post("/notes/pictures", (req, res) -> {
+           String imageUrl = null;
+
+            try {
+                List<FileItem> files = req.getFormData("files");
+                imageUrl = db.uploadImage(files.get(0));
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (FileUploadException e) {
+                e.printStackTrace();
+            }
+
+            res.send(imageUrl);
         });
 
         app.post("/notes", (req, res) -> {
