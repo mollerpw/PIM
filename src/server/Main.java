@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.nio.file.Paths;
 
 import java.nio.file.Paths;
+import java.sql.SQLException;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -14,20 +16,21 @@ public class Main {
         Database db = new Database();
         Express app = new Express();
 
-        app.get("/notes", (req, res) -> {
-            Note notes = (Note) req.getBody(Note.class);
-            String noteName = notes.getName();
-            String content = notes.getContent();
-            db.Write(noteName, content);
-        });
-
-        app.put("/notes", (req, res) -> {
+       app.put("/notes", (req, res) -> {
            Note notes = (Note) req.getBody(Note.class);
            String noteName = notes.getName();
-           String outPut = db.Read(noteName);
-           res.json(outPut);
+           String content = notes.getContent();
+          db.Write(noteName, content);
+       });
+
+        app.get("/notes", (req, res) -> {
+
+            List<Note> notes= db.Read();
+            res.json(notes);
 
         });
+
+
 
         app.post("/notes", (req, res) -> {
             Note notes = (Note) req.getBody(Note.class);
