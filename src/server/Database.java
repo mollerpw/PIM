@@ -37,6 +37,23 @@ public class Database {
         }
         return notes;
     }
+
+    public List<Note> readFolder(){
+        List<Note> folders = null;
+        try {
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Folders");
+            ResultSet rs = stmt.executeQuery();
+            Note[] foldersFromRs = (Note[]) Utils.readResultSetToObject(rs, Note[].class);
+
+            folders = List.of(foldersFromRs);
+
+        } catch (SQLException | JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return folders;
+    }
+
+
     public void Write(String noteName, String content){
         try {
             PreparedStatement stmt = conn.prepareStatement("UPDATE notes SET content='" + content + "', timestamp ='" + LocalDateTime.now() + "' WHERE name='" + noteName + "';");
@@ -54,6 +71,7 @@ public class Database {
             e.printStackTrace();
         }
     }
+
     public boolean createFolder(String folder){
         try {
             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Folders WHERE name = ?");
@@ -75,9 +93,8 @@ public class Database {
             e.printStackTrace();
             return false;
         }
-
-
     }
+
     public void deleteNote(String note) {
         try {
             PreparedStatement stmt = conn.prepareStatement("DELETE FROM Notes WHERE name = ?");

@@ -31,7 +31,7 @@ public class Main {
         });
 
         app.get("/folders", (req, res) -> {
-            List<Note> folders = db.Read();
+            List<Note> folders = db.readFolder();
             res.json(folders);
 
         });
