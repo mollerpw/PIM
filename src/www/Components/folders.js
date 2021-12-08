@@ -5,7 +5,7 @@ async function renderFolder() {
     let output = "";
     let index = 0;
     for(let foldername of JSONfoldernames){
-        output += `<p id="folderElement${index}">${foldername.name}<button class="deleteFolderButton" onclick="deleteFolder(${index})"><strong>-</strong></button></p>`;
+        output += `<p id="folderElement${index}"><button onClick="temp_folder()">${foldername.name}</button><button class="deleteFolderButton" onclick="deleteFolder(${index})"><strong>-</strong></button></p>`;
         index++;
     }
     document.querySelector("#folder").insertAdjacentHTML("beforeend",output);
