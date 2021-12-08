@@ -6,7 +6,7 @@ async function renderNotes() {
     for(let noteName of JSONNoteNames){
         outputNote += `<p id="noteElement">${noteName.name}</p>`;
     }
-    console.log(outputNote)
+
     document.querySelector('#notes').insertAdjacentHTML("beforeend",outputNote);
 }
 
