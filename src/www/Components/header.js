@@ -12,7 +12,7 @@ function renderHeader() {
 
 async function saveNote(){
     let savedNote = {
-        name: "annat",
+        name: "cool",
         content: "hejhej"
     }
 
@@ -39,16 +39,15 @@ async function deleteNote(){
 }
 
 async function deleteFolder(){
-    let deletedFolder = {
-        name: "annat",
-        content: "hejhej",
-        folder: "skola"
-    }
+    let folderToDelete = [{
+        name: "skola"
 
+    }]
+    console.log(folderToDelete)
     let result = await fetch("/folders", {
         method: "DELETE",
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(deletedFolder)
+        body: JSON.stringify(folderToDelete)
     });
     //let response = await result.json();
 }

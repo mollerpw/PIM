@@ -2,7 +2,7 @@ document.querySelector('header').innerHTML = renderHeader();
 
 renderFolder();
 
-document.querySelector('#notes').insertAdjacentHTML("beforeend", renderNotes());
+renderNotes();
 
 document.querySelector('#writingfield').innerHTML = renderWritingField();
 
