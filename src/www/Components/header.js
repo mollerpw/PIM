@@ -12,7 +12,7 @@ function renderHeader() {
 
 async function saveNote(){
     let savedNote = {
-        name: "annat",
+        name: "cool",
         content: "hejhej"
     }
 
