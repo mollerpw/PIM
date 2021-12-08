@@ -31,3 +31,18 @@ async function addFolder(){
     });
     location.reload();
 }
+
+async function deleteFolder(){
+
+    let folderName = {
+        name: document.getElementById("folderInput").value
+    };
+    console.log(folderName.name);
+    saveNote()
+    await fetch('/folders', {
+        method: "DELETE",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(folderName)
+    });
+    location.reload();
+}
