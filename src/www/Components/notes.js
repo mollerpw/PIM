@@ -1,13 +1,19 @@
 let notePrompt = false;
 
-async function renderNotes() {
+async function renderNotes(currentFolderName) {
     let JSONNoteNames = await (await fetch('/notes')).json();
+    console.log(currentFolderName)
+    console.log(JSONNoteNames)
+
+    document.querySelector('#notesText').innerHTML = "";
     let outputNote = "";
     for(let noteName of JSONNoteNames){
-        outputNote += `<p id="noteElement">${noteName.name}</p>`;
+        if (noteName.folder == currentFolderName) {
+            outputNote += `<p id="noteElement">${noteName.name}</p>`;
+            }
     }
 
-    document.querySelector('#notes').insertAdjacentHTML("beforeend",outputNote);
+    document.querySelector('#notesText').insertAdjacentHTML("beforeend",outputNote);
 }
 
 
