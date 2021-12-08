@@ -19,15 +19,14 @@ function addFolderPrompt(){
 }
 
 async function addFolder(){
-    let folderName = document.getElementById("folderInput").value;
-
+    let folderName = {
+        name: document.getElementById("folderInput").value
+    };
     saveNote();
-
     await fetch(`/folders/`, {
-        method: "PUT",
+        method: "POST",
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(folderName)
     });
-
     location.reload();
 }
