@@ -53,7 +53,7 @@ h2 {
     height: 85vh;
 }
 
-#folderElement {
+.folderCSS {
     display: flex;
     justify-content: space-between;
     margin-left: 1vh;

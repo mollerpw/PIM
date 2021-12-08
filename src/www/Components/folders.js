@@ -5,7 +5,13 @@ async function renderFolder() {
     let output = "";
     let index = 0;
     for(let foldername of JSONfoldernames){
-        output += `<p id="folderElement${index}"><button onClick="temp_folder()">${foldername.name}</button><button class="deleteFolderButton" onclick="deleteFolder(${index})"><strong>-</strong></button></p>`;
+        output += `
+        <p id="folderElement${index}" class="folderCSS">
+            <button onClick="temp_folder()">${foldername.name}</button>
+            <button class="deleteFolderButton" onclick="deleteFolder(${index})">
+                <strong>-</strong>
+            </button>
+        </p>`;
         index++;
     }
     document.querySelector("#folder").insertAdjacentHTML("beforeend",output);
@@ -32,6 +38,7 @@ async function addFolder(){
         body: JSON.stringify(folderName)
     });
     let response = await rawResponse.json();
+
     if (response === false) {
     alert("Folder with that name already exists")
     }
@@ -39,13 +46,16 @@ async function addFolder(){
 }
 
 async function deleteFolder(index){
+
     folderName = {
-        name: document.getElementById("folderElement" + index).innerText.substr(0, document.getElementById("folderElement" + index).innerText.length - 1)
+        name: document.getElementById("folderElement" + index).innerText.substr(0, document.getElementById("folderElement" + index).innerText.length - 2)
     }
+
     await fetch("/folders", {
         method: "DELETE",
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(folderName)
     });
+
     location.reload();
 }

@@ -8,7 +8,7 @@ let currentNote = {
 };
 
 function renderWritingField() {
-    console.log(currentNote.name)
+
     if (currentNote.name == ""){
     return `
         <textarea id=textArea placeholder= "Write here..."></textarea>
