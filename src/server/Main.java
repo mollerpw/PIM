@@ -70,7 +70,7 @@ public class Main {
         app.delete("/folders", (req, res) -> {
             Folder folders = (Folder) req.getBody(Folder.class);
             String folder = folders.getName();
-            db.deleteFolder(folder);
+            res.json(db.deleteFolder(folder));
         });
 
 
