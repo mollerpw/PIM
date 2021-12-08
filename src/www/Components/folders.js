@@ -19,11 +19,12 @@ function addFolderPrompt(){
 }
 
 async function addFolder(){
+
     let folderName = {
         name: document.getElementById("folderInput").value
     };
-    saveNote();
-    await fetch(`/folders/`, {
+    saveNote()
+    await fetch('/folders', {
         method: "POST",
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(folderName)
