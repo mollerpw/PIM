@@ -8,7 +8,7 @@ public class Folder {
 
     public Folder(String name, String timestamp) {
         this.name = name;
-        this.name = timestamp;
+        this.timestamp = timestamp;
     }
 
     public String getName() {
