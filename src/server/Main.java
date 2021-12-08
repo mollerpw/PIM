@@ -61,9 +61,9 @@ public class Main {
         });
 
         app.post("/folders", (req, res) -> {
-            Note notes = (Note) req.getBody(Note.class);
-            String folder = notes.getFolder();
-            res.json(db.createFolder(folder));
+            Folder folder = (Folder) req.getBody(Folder.class);
+            String folderName = folder.getName();
+            res.json(db.createFolder(folderName));
         });
 
 
