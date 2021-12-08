@@ -69,7 +69,7 @@ async function currentNote(index) {
         content: tempContent
     }
 
-    renderNotes(currentFolderName.name)
+    //renderNotes(currentFolderName.name)
     renderWritingField();
     
     
