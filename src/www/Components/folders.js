@@ -3,8 +3,10 @@ let folderPrompt = false;
 async function renderFolder() {
     let JSONfoldernames = await (await fetch('/folders')).json();
     let output = "";
+    let index = 0;
     for(let foldername of JSONfoldernames){
-        output += `<p id="folderElement">${foldername.name}<button class="deleteFolderButton" onclick="deleteFolder()"><strong>-</strong></button></p>`;
+        output += `<p id="folderElement${index}">${foldername.name}<button class="deleteFolderButton" onclick="deleteFolder(${index})"><strong>-</strong></button></p>`;
+        index++;
     }
     document.querySelector("#folder").insertAdjacentHTML("beforeend",output);
 }
@@ -36,14 +38,11 @@ async function addFolder(){
     location.reload();
 }
 
-async function deleteFolder(){
-
-    let folderName = {
-        name: document.getElementById("folderInput").value
-    };
-    console.log(folderName.name);
-    saveNote()
-    await fetch('/folders', {
+async function deleteFolder(index){
+    folderName = {
+        name: document.getElementById("folderElement" + index).innerText.substr(0, document.getElementById("folderElement" + index).innerText.length - 1)
+    }
+    await fetch("/folders", {
         method: "DELETE",
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(folderName)
