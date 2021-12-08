@@ -24,8 +24,27 @@ async function addFolder(){
         name: document.getElementById("folderInput").value
     };
     saveNote()
-    await fetch('/folders', {
+    let rawResponse = await fetch('/folders', {
         method: "POST",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(folderName)
+    });
+    let response = await rawResponse.json();
+    if (response === false) {
+    alert("Folder with that name already exists")
+    }
+    location.reload();
+}
+
+async function deleteFolder(){
+
+    let folderName = {
+        name: document.getElementById("folderInput").value
+    };
+    console.log(folderName.name);
+    saveNote()
+    await fetch('/folders', {
+        method: "DELETE",
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(folderName)
     });
