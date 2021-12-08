@@ -24,10 +24,14 @@ async function addFolder(){
         name: document.getElementById("folderInput").value
     };
     saveNote()
-    await fetch('/folders', {
+    let rawResponse = await fetch('/folders', {
         method: "POST",
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(folderName)
     });
+    let response = await rawResponse.json();
+    if (response === false) {
+    alert("Folder with that name already exists")
+    }
     location.reload();
 }
