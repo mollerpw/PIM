@@ -20,10 +20,17 @@ function addNotePrompt(){
     }
 }
 
-function addNote(){
-    let folderName = document.getElementById("noteInput").value;
-
-    //save note before reloading
-    //add to database
+async function addNote(){
+    let noteNameToAdd = {
+        name: document.getElementById("noteInput").value
+        folder: "jobb"
+    };
+    //saveNote()
+    await fetch('/notes', {
+        method: "POST",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(noteNameToAdd)
+    });
     location.reload();
+
 }

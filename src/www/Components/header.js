@@ -38,19 +38,7 @@ async function deleteNote(){
     //let response = await result.json();
 }
 
-async function deleteFolder(){
-    let folderToDelete = [{
-        name: "skola"
 
-    }]
-    console.log(folderToDelete)
-    let result = await fetch("/folders", {
-        method: "DELETE",
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(folderToDelete)
-    });
-    //let response = await result.json();
-}
 
 async function insertPicture() {
     let files = document.querySelector('input[type=file]').files;
