@@ -68,8 +68,8 @@ public class Main {
 
 
         app.delete("/folders", (req, res) -> {
-            Note notes = (Note) req.getBody(Note.class);
-            String folder = notes.getFolder();
+            Folder folders = (Folder) req.getBody(Folder.class);
+            String folder = folders.getName();
             db.deleteFolder(folder);
         });
 
