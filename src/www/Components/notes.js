@@ -22,15 +22,17 @@ function addNotePrompt(){
 
 async function addNote(){
     let noteNameToAdd = {
-        name: document.getElementById("noteInput").value
+        name: document.getElementById("noteInput").value,
         folder: "jobb"
     };
+    console.log(noteNameToAdd);
     //saveNote()
-    await fetch('/notes', {
+    let rawResponse = await fetch('/notes', {
         method: "POST",
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(noteNameToAdd)
     });
+
     location.reload();
 
 }

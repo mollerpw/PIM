@@ -66,12 +66,14 @@ public class Database {
         }
     }
 
-    public void Create(String noteName, String folder){
+    public boolean Create(String noteName, String folder){
         try {
             PreparedStatement stmt = conn.prepareStatement("INSERT INTO notes (name, folder, timestamp) VALUES ('" + noteName + "', '" + folder + "', '" + LocalDateTime.now() + "');");
             stmt.execute();
+            return true;
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
     }
 
