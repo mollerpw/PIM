@@ -12,8 +12,9 @@ function renderHeader() {
 
 async function saveNote(){
     let savedNote = {
-        name: "cool",
-        content: "hejhej"
+        name: "annat",
+        folder: "jobb",
+        content: document.getElementById("textArea").value
     }
 
     let result = await fetch("/notes", {

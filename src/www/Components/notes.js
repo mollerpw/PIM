@@ -27,7 +27,7 @@ async function addNote(){
     };
     console.log(noteNameToAdd);
     //saveNote()
-    let rawResponse = await fetch('/notes', {
+    await fetch('/notes', {
         method: "POST",
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(noteNameToAdd)

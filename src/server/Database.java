@@ -57,12 +57,14 @@ public class Database {
     }
 
 
-    public void Write(String noteName, String content){
+    public boolean Write(String noteName, String content){
         try {
             PreparedStatement stmt = conn.prepareStatement("UPDATE notes SET content='" + content + "', timestamp ='" + LocalDateTime.now() + "' WHERE name='" + noteName + "';");
             stmt.execute();
+            return true;
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
     }
 
@@ -123,7 +125,7 @@ public class Database {
         }catch (SQLException e) {
             e.printStackTrace();
         }
-    }
+    }       
 
     public String uploadImage(FileItem image) {
         String imageUrl = "/images/" + image.getName();

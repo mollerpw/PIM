@@ -74,7 +74,7 @@ flex: 1;
 
 }
 
-#text {
+#textArea {
     flex-grow: 1;
     font-size: 1.2em;
     line-height: 1.5;
