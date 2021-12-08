@@ -3,7 +3,8 @@ function renderHeader() {
         <h1>PIM</h1>
         <nav>
             <input id="file" type="file" accept="txt" placeholder="insert file" onclick="insertFile()">
-            <input type="file" accept="image/*" placeholder="insert picture" onclick="insertPicture()">
+            <input id="picture" type="file" accept="image/*" placeholder="insert picture">
+            <button type ="submit" onclick="insertPicture(event)">save picture</button>
             <button onclick="deleteNote()">Delete note</button>
             <button onclick="saveNote()">Save note</button>
         </nav>
@@ -39,8 +40,9 @@ async function deleteNote(){
     //let response = await result.json();
 }
 
-async function insertPicture() {
-    let files = document.querySelector('input[type=file]').files;
+async function insertPicture(e) {
+    e.preventDefault();
+    let files = document.querySelector('#picture').files;
     let formData = new FormData();
 
     for(let file of files) {
@@ -51,12 +53,13 @@ async function insertPicture() {
         method: 'POST',
         body: formData
     });
-    let imageUrl = await uploadResult.text();
+    let imageURL = await uploadResult.text();
+    console.log(imageURL);
 
     let notes = {
         name: "något",
         content: "ny image",
-        imageUrl: imageUrl
+        imageURL: imageURL
     }
 
     await fetch("/notes", {
