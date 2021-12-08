@@ -1,13 +1,15 @@
 let notePrompt = false;
 
-function renderNotes() {
-    return `
-
-        <p>Biology</p>
-        <p>Chemistry</p>
-        <p>Business Management</p>
-    `;
+async function renderNotes() {
+    let JSONNoteNames = await (await fetch('/notes')).json();
+    let outputNote = "";
+    for(let noteName of JSONNoteNames){
+        outputNote += `<p id="noteElement">${noteName.name}</p>`;
+    }
+    console.log(outputNote)
+    document.querySelector('#notes').insertAdjacentHTML("beforeend",outputNote);
 }
+
 
 function addNotePrompt(){
     if(!notePrompt){
