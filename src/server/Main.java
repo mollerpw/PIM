@@ -57,7 +57,7 @@ public class Main {
             Note notes = (Note) req.getBody(Note.class);
             String noteName = notes.getName();
             String folder = notes.getFolder();
-            db.Create(noteName, folder);
+            res.json(db.Create(noteName, folder));
         });
 
         app.post("/folders", (req, res) -> {
