@@ -12,8 +12,8 @@ function renderHeader() {
 
 async function saveNote(){
     let savedNote = {
-        name: "annat",
-        folder: "jobb",
+        name: currentNoteName.name,
+        folder: currentFolderName.name,
         content: document.getElementById("textArea").value
     }
 
@@ -27,8 +27,8 @@ async function saveNote(){
 
 async function deleteNote(){
     let deletedNote = {
-        name: "annat",
-        content: "hejhej"
+        name: currentNoteName.name
+
     }
 
     let result = await fetch("/notes", {
@@ -37,6 +37,12 @@ async function deleteNote(){
         body: JSON.stringify(deletedNote)
     });
     //let response = await result.json();
+    currentNoteName = {
+        name: "",
+        content: ""
+    }
+    renderNotes(currentFolderName.name);
+    renderWritingField();
 }
 
 async function insertPicture() {

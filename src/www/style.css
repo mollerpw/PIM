@@ -87,3 +87,10 @@ flex: 1;
 .folderButton:focus {
 background-color: yellow;
 }
+.noteButton {
+    margin-bottom: 10px;
+
+}
+.noteButton:focus {
+background-color: rgb(39, 39, 151);
+}

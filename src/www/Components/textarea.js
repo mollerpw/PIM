@@ -1,23 +1,15 @@
-//let currentNote = {
-//    name: ""
-//}
 
-let currentNote = {
-    name: "Skolprojekt",
-    content: "TEst text 123, 3455. DETTA ÄR MASSA TEST"
-};
 
 function renderWritingField() {
+    console.log("current folder: "+currentFolderName.name)
+    console.log("current note: "+currentNoteName.name)
+    console.log("current content: "+currentNoteName.content)
 
-    if (currentNote.name == ""){
-    return `
-        <textarea id=textArea placeholder= "Write here..."></textarea>
-    `
-    }
-    else {
-        return `
-            <textarea id=textArea placeholder= "Write here...">${currentNote.content}</textarea>
-        `
-
-    }
+if (currentNoteName.content == null){
+    document.querySelector("#writingfield").innerHTML = `<textarea id=textArea placeholder= "Write here..."></textarea>`
 }
+else{
+    document.querySelector("#writingfield").innerHTML = `<textarea id=textArea placeholder= "Write here...">${currentNoteName.content}</textarea>`
+}
+
+    }

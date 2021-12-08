@@ -4,7 +4,7 @@ renderFolder();
 
 //renderNotes();
 
-document.querySelector('#writingfield').innerHTML = renderWritingField();
+renderWritingField();
 
 
 

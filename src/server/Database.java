@@ -29,7 +29,7 @@ public class Database {
     public List<Note> Read(){
         List<Note> notes = null;
         try {
-            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Notes");
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Notes ORDER BY timestamp DESC");
             ResultSet rs = stmt.executeQuery();
             Note[] notesFromRs = (Note[]) Utils.readResultSetToObject(rs, Note[].class);
 
@@ -102,15 +102,16 @@ public class Database {
         }
     }
 
-    public void deleteNote(String note) {
+    public boolean deleteNote(String note) {
         try {
             PreparedStatement stmt = conn.prepareStatement("DELETE FROM Notes WHERE name = ?");
             stmt.setString(1, note);
             stmt.executeUpdate();
-
+            return true;
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+            return false;
         }
     }
 

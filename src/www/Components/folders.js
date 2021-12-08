@@ -7,7 +7,7 @@ async function renderFolder() {
     for(let foldername of JSONfoldernames){
         output += `
         <p id="folderElement${index}" class="folderCSS">
-            <button class="folderButton" onClick="currentFolder(${index})">${foldername.name}</button>
+            <button id="folderButton${index}" class="folderButton" onClick="currentFolder(${index})">${foldername.name}</button>
             <button class="deleteFolderButton" onclick="deleteFolder(${index})">
                 <strong>-</strong>
             </button>
@@ -65,10 +65,18 @@ let currentFolderName = {
 }
 
 function currentFolder(index) {
+    saveNote();
     currentFolderName = {
         name: document.getElementById("folderElement" + index).innerText.substr(0, document.getElementById("folderElement" + index).innerText.length - 2)
     }
+    //document.getElementById("folderButton" + index).style.backgroundColor = "red";
     console.log(currentFolderName.name)
+        currentNoteName = {
+            name: "",
+            content: ""
+        }
     renderNotes(currentFolderName.name);
+    renderWritingField();
+
 
 }
