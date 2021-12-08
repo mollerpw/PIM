@@ -25,6 +25,12 @@ public class Main {
            res.json(db.Write(noteName, content));
        });
 
+       app.put("/notes", (req, res) -> {
+           Note notes = (Note) req.getBody(Note.class);
+
+           db.updateNote(notes);
+       });
+
         app.get("/notes", (req, res) -> {
 
             List<Note> notes= db.Read();

@@ -52,6 +52,17 @@ async function insertPicture() {
         body: formData
     });
     let imageUrl = await uploadResult.text();
+
+    let notes = {
+        name: "något",
+        content: "ny image",
+        imageUrl: imageUrl
+    }
+
+    await fetch("/notes", {
+        method: "PUT",
+        body: JSON.stringify(notes)
+    })
 }
 
 async function insertFile() {
@@ -62,9 +73,20 @@ async function insertFile() {
         formData.append('files', file, file.name);
     }
 
-    let uploadResult = await fetch("/notes/files", {
+    let uploadResult = await fetch("/notes/pictures", {
         method: 'POST',
         body: formData
     });
     let imageUrl = await uploadResult.text();
+
+    let notes = {
+        name: "något",
+        content: "ny image",
+        imageUrl: imageUrl
+    }
+
+    await fetch("/notes", {
+        method: "PUT",
+        body: JSON.stringify(notes)
+    })
 }
