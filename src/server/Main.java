@@ -22,7 +22,7 @@ public class Main {
            Note notes = (Note) req.getBody(Note.class);
            String noteName = notes.getName();
            String content = notes.getContent();
-          db.Write(noteName, content);
+           res.json(db.Write(noteName, content));
        });
 
         app.get("/notes", (req, res) -> {
@@ -57,7 +57,7 @@ public class Main {
             Note notes = (Note) req.getBody(Note.class);
             String noteName = notes.getName();
             String folder = notes.getFolder();
-            db.Create(noteName, folder);
+            res.json(db.Create(noteName, folder));
         });
 
         app.post("/folders", (req, res) -> {
@@ -70,7 +70,7 @@ public class Main {
         app.delete("/folders", (req, res) -> {
             Folder folders = (Folder) req.getBody(Folder.class);
             String folder = folders.getName();
-            db.deleteFolder(folder);
+            res.json(db.deleteFolder(folder));
         });
 
 

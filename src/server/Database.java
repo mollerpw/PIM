@@ -57,21 +57,25 @@ public class Database {
     }
 
 
-    public void Write(String noteName, String content){
+    public boolean Write(String noteName, String content){
         try {
             PreparedStatement stmt = conn.prepareStatement("UPDATE notes SET content='" + content + "', timestamp ='" + LocalDateTime.now() + "' WHERE name='" + noteName + "';");
             stmt.execute();
+            return true;
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
     }
 
-    public void Create(String noteName, String folder){
+    public boolean Create(String noteName, String folder){
         try {
             PreparedStatement stmt = conn.prepareStatement("INSERT INTO notes (name, folder, timestamp) VALUES ('" + noteName + "', '" + folder + "', '" + LocalDateTime.now() + "');");
             stmt.execute();
+            return true;
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
     }
 
@@ -110,7 +114,7 @@ public class Database {
         }
     }
 
-    public void deleteFolder(String folder) {
+    public boolean deleteFolder(String folder) {
         try {
             PreparedStatement stmt = conn.prepareStatement("DELETE FROM Notes WHERE folder = ?");
             stmt.setString(1, folder);
@@ -118,10 +122,12 @@ public class Database {
             PreparedStatement stmt2 = conn.prepareStatement("DELETE FROM Folders WHERE name = ?");
             stmt2.setString(1, folder);
             stmt2.executeUpdate();
+            return true;
         }catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
-    }
+    }       
 
     public String uploadImage(FileItem image) {
         String imageUrl = "/images/" + image.getName();
