@@ -122,4 +122,5 @@ async function insertFile(e) {
         method: "PUT",
         body: JSON.stringify(notes)
     })
+    renderWritingField();
 }
