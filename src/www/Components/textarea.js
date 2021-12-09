@@ -5,10 +5,11 @@ function renderWritingField() {
     console.log("current note: "+currentNoteName.name)
     console.log("current content: "+currentNoteName.content)
     console.log("current note id: "+currentNoteName.id)
+    console.log("current img: "+currentNoteName.imageURL)
 
     if (currentNoteName.content == null){
         document.querySelector("#writingfield").innerHTML = `<textarea id=textArea placeholder= "Write here..."></textarea>`
     } else {
-        document.querySelector("#writingfield").innerHTML = `<textarea id=textArea placeholder= "Write here...">${currentNoteName.content}</textarea>`
+        document.querySelector("#writingfield").innerHTML = `<img id="img" src=${currentNoteName.imageURL}></img><textarea id=textArea placeholder= "Write here...">${currentNoteName.content}</textarea>`
     }
 }

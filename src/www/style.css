@@ -92,5 +92,12 @@ background-color: yellow;
 
 }
 .noteButton:focus {
-background-color: rgb(39, 39, 151);
+    background-color: rgb(39, 39, 151);
+}
+img {
+    width: 150px;
+}
+
+img:hover {
+    width: 300px;
 }
