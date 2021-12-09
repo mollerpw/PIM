@@ -70,7 +70,6 @@ public class Database {
 
     public boolean updateNote(Note note) {
         try {
-            System.out.println(note.getImageURL());
             PreparedStatement stmt = conn.prepareStatement("UPDATE notes SET content = ? , timestamp ='" + LocalDateTime.now() + "', imageURL = ? WHERE name = ?");
             stmt.setString(1, note.getContent());
             stmt.setString(2, note.getImageURL());

@@ -26,11 +26,6 @@ public class Main {
            res.json(db.updateNote(notes));
        });
 
-       app.put("/notes", (req, res) -> {
-           Note notes = (Note) req.getBody(Note.class);
-
-           db.updateNote(notes);
-       });
 
         app.get("/notes", (req, res) -> {
 
