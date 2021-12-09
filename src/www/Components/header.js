@@ -15,6 +15,7 @@ function renderHeader() {
 
 async function saveNote(){
     let savedNote = {
+        id: currentNoteName.id,
         name: currentNoteName.name,
         folder: currentFolderName.name,
         content: document.getElementById("textArea").value
@@ -30,7 +31,7 @@ async function saveNote(){
 
 async function deleteNote(){
     let deletedNote = {
-        name: currentNoteName.name
+        id: currentNoteName.id
 
     }
 
@@ -41,6 +42,7 @@ async function deleteNote(){
     });
     //let response = await result.json();
     currentNoteName = {
+        id: "",
         name: "",
         content: ""
     }
@@ -65,6 +67,7 @@ async function insertPicture(e) {
     console.log(imageURL);
 
     let notes = {
+        id: currentNoteName.id,
         name: currentNoteName.name,
         content: currentNoteName.content,
         imageURL: imageURL
@@ -91,6 +94,7 @@ async function insertFile() {
     let uploadFile = await uploadResult.text();
 
     let notes = {
+        id: currentNoteName.id,
         name: currentNoteName.name,
         content: currentNoteName.content,
         uploadFile: uploadFile

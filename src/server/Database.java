@@ -75,7 +75,6 @@ public class Database {
             stmt.setString(2, note.getImageURL());
             stmt.setString(3, note.getUploadFile());
             stmt.setString(4, note.getId());
-
             stmt.executeUpdate();
             return true;
         }catch (Exception e) {
@@ -132,10 +131,10 @@ public class Database {
         }
     }
 
-    public boolean deleteNote(String note) {
+    public boolean deleteNote(Note note) {
         try {
-            PreparedStatement stmt = conn.prepareStatement("DELETE FROM Notes WHERE name = ?");
-            stmt.setString(1, note);
+            PreparedStatement stmt = conn.prepareStatement("DELETE FROM Notes WHERE id = ?");
+            stmt.setString(1, note.getId());
             stmt.executeUpdate();
             return true;
 

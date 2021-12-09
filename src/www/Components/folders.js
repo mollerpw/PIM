@@ -79,7 +79,8 @@ function currentFolder(index) {
 
     currentNoteName = {
         name: "",
-        content: ""
+        content: "",
+        id: ""
     }
     
     renderNotes(currentFolderName.name);
