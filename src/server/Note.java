@@ -5,6 +5,7 @@ public class Note {
     private String folder;
     private String content;
     private String timestamp;
+    private String imageURL;
 
     public Note() {}
 
@@ -18,6 +19,13 @@ public class Note {
     public Note(String name, String content, String folder) {
         this.name = name;
         this.content = content;
+    }
+
+    public Note(String name, String content, String folder, String imageURL) {
+        this.name = name;
+        this.content = content;
+        this.folder = folder;
+        this.imageURL = imageURL;
     }
 
     public String getName() {
@@ -50,5 +58,13 @@ public class Note {
 
     public void setTimestamp(String timestamp) {
         this.timestamp = timestamp;
+    }
+
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
     }
 }

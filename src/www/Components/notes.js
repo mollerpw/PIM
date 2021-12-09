@@ -1,13 +1,15 @@
 let notePrompt = false;
 
-function renderNotes() {
-    return `
+async function renderNotes() {
+    let JSONNoteNames = await (await fetch('/notes')).json();
+    let outputNote = "";
+    for(let noteName of JSONNoteNames){
+        outputNote += `<p id="noteElement">${noteName.name}</p>`;
+    }
 
-        <p>Biology</p>
-        <p>Chemistry</p>
-        <p>Business Management</p>
-    `;
+    document.querySelector('#notes').insertAdjacentHTML("beforeend",outputNote);
 }
+
 
 function addNotePrompt(){
     if(!notePrompt){
@@ -18,10 +20,19 @@ function addNotePrompt(){
     }
 }
 
-function addNote(){
-    let folderName = document.getElementById("noteInput").value;
+async function addNote(){
+    let noteNameToAdd = {
+        name: document.getElementById("noteInput").value,
+        folder: "jobb"
+    };
+    console.log(noteNameToAdd);
+    //saveNote()
+    await fetch('/notes', {
+        method: "POST",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(noteNameToAdd)
+    });
 
-    //save note before reloading
-    //add to database
     location.reload();
+
 }

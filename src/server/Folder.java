@@ -6,6 +6,10 @@ public class Folder {
     public Folder() {
     }
 
+    public Folder(String name) {
+        this.name = name;
+    }
+
     public Folder(String name, String timestamp) {
         this.name = name;
         this.timestamp = timestamp;
