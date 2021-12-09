@@ -59,7 +59,7 @@ public class Database {
 
     public boolean Write(String noteName, String content){
         try {
-            PreparedStatement stmt = conn.prepareStatement("UPDATE notes SET content='" + content + "', timestamp ='" + LocalDateTime.now() + "' WHERE name='" + noteName + "';");
+            PreparedStatement stmt = conn.prepareStatement("UPDATE notes SET content= '" + content + "', timestamp ='" + LocalDateTime.now() + "' WHERE name='" + noteName + "';");
             stmt.execute();
             return true;
         } catch (SQLException e) {
@@ -70,10 +70,12 @@ public class Database {
 
     public boolean updateNote(Note note) {
         try {
-            PreparedStatement stmt = conn.prepareStatement("UPDATE notes SET content = ? , timestamp ='" + LocalDateTime.now() + "', imageURL = ? WHERE name = ?");
+            PreparedStatement stmt = conn.prepareStatement("UPDATE notes SET content = ? , timestamp ='" + LocalDateTime.now() + "', imageURL = ? WHERE uploadFile = ? AND id = ?");
             stmt.setString(1, note.getContent());
             stmt.setString(2, note.getImageURL());
-            stmt.setString(3, note.getName());
+            stmt.setString(3, note.getUploadFile());
+            stmt.setString(4, note.getId());
+
             stmt.executeUpdate();
             return true;
         }catch (Exception e) {
@@ -106,6 +108,7 @@ public class Database {
             return false;
         }
     }
+
     public boolean createFolder(String folder){
         try {
             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Folders WHERE name = ?");
