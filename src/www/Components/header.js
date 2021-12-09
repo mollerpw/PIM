@@ -2,8 +2,11 @@ function renderHeader() {
     return `
         <h1>PIM</h1>
         <nav>
-            <input id="file" type="file" accept="txt" placeholder="insert file" onclick="insertFile()">
-            <input type="file" accept="image/*" placeholder="insert picture" onclick="insertPicture()">
+            <label for="file">Select a file:</label>
+            <input id="file" type="file" accept="file_extension" placeholder="insert file">
+            <label for="picture">Select an image:</label>
+            <input id="picture" type="file" accept="image/*" placeholder="insert picture">
+            <button type ="submit" onclick="insertPicture(event)">save picture</button>
             <button onclick="deleteNote()">Delete note</button>
             <button onclick="saveNote()">Save note</button>
         </nav>
@@ -45,8 +48,9 @@ async function deleteNote(){
     renderWritingField();
 }
 
-async function insertPicture() {
-    let files = document.querySelector('input[type=file]').files;
+async function insertPicture(e) {
+    e.preventDefault();
+    let files = document.querySelector('#picture').files;
     let formData = new FormData();
 
     for(let file of files) {
@@ -57,7 +61,19 @@ async function insertPicture() {
         method: 'POST',
         body: formData
     });
-    let imageUrl = await uploadResult.text();
+    let imageURL = await uploadResult.text();
+    console.log(imageURL);
+
+    let notes = {
+        name: currentNoteName.name,
+        content: currentNoteName.content,
+        imageURL: imageURL
+    }
+
+    await fetch("/notes", {
+        method: "PUT",
+        body: JSON.stringify(notes)
+    })
 }
 
 async function insertFile() {
@@ -72,5 +88,16 @@ async function insertFile() {
         method: 'POST',
         body: formData
     });
-    let imageUrl = await uploadResult.text();
+    let uploadFile = await uploadResult.text();
+
+    let notes = {
+        name: currentNoteName.name,
+        content: currentNoteName.content,
+        uploadFile: uploadFile
+    }
+
+    await fetch("/notes", {
+        method: "PUT",
+        body: JSON.stringify(notes)
+    })
 }

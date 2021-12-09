@@ -16,6 +16,7 @@ async function renderNotes(folderName) {
         }
         index++;
     }
+ 
     document.querySelector('#noteElement').insertAdjacentHTML("beforeend",outputNote);
 }
 
@@ -37,17 +38,24 @@ async function addNote(){
     };
     console.log(noteNameToAdd);
     //saveNote()
-    await fetch('/notes', {
+    let rawResponse = await fetch('/notes', {
         method: "POST",
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(noteNameToAdd)
     });
+    let response = await rawResponse.json();
+    console.log(response)
+    if (response === false) {
+        alert("A note with this name already exist in current folder")
+    }else {
+        location.reload();
+        renderNotes(currentFolderName.name)
+    }
 
-    location.reload();
-    renderNotes(currentFolderName.name)
 }
 
 let currentNoteName = {
+
     name: "",
     content: ""
 }
@@ -55,14 +63,14 @@ let currentNoteName = {
 async function currentNote(index) {
     saveNote();
     currentNoteName = {
-        name: document.getElementById("noteButton" + index).innerText.substr(0, document.getElementById("noteButton" + index).innerText.length),
+        name: document.getElementById("noteButton" + index).innerText,
         content: ""
     }
 
     let tempContent = await updateCurrentContent();
 
     currentNoteName = {
-        name: document.getElementById("noteButton" + index).innerText.substr(0, document.getElementById("noteButton" + index).innerText.length),
+        name: document.getElementById("noteButton" + index).innerText,
         content: tempContent
     }
     //renderNotes(currentFolderName.name)
@@ -71,11 +79,10 @@ async function currentNote(index) {
 
 async function updateCurrentContent() {
     let JSONNoteNames = await (await fetch('/notes')).json();
-    let outputContent = "";
-    let index = 0;
+
     for(let noteName of JSONNoteNames){
         if (noteName.name == currentNoteName.name) {
             return noteName.content;
         }
-    }                
+    }
 }
