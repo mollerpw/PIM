@@ -22,6 +22,7 @@ async function renderNotes(folderName) {
 
 
 function addNotePrompt(){
+    console.log("prmotp");
     if(!notePrompt){
         document.querySelector('#notes').insertAdjacentHTML("beforeend", `
         <input type="text" id="noteInput" name="fname"></input>
@@ -48,10 +49,11 @@ async function addNote(){
     if (response === false) {
         alert("A note with this name already exist in current folder")
     }else {
-        location.reload();
+        document.getElementById("noteInput").remove();
+        document.getElementById("noteButton").remove();
         renderNotes(currentFolderName.name)
+        notePrompt = false;
     }
-
 }
 
 let currentNoteName = {
