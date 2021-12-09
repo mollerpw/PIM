@@ -18,7 +18,8 @@ async function saveNote(){
         id: currentNoteName.id,
         name: currentNoteName.name,
         folder: currentFolderName.name,
-        content: document.getElementById("textArea").value
+        content: document.getElementById("textArea").value,
+        imageURL: currentNoteName.imageURL
     }
 
     let result = await fetch("/notes", {
@@ -72,6 +73,12 @@ async function insertPicture(e) {
         content: currentNoteName.content,
         imageURL: imageURL
     }
+        currentNoteName = {
+            id: currentNoteName.id,
+            name: currentNoteName.name,
+            content: currentNoteName.content,
+            imageURL: imageURL
+        }
 
     await fetch("/notes", {
         method: "PUT",
