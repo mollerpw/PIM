@@ -4,6 +4,7 @@ function renderHeader() {
         <nav>
             <label for="file">Select a file:</label>
             <input id="file" type="file" accept="file_extension" placeholder="insert file">
+            <button type="submit" onclick="insertFile(event)">save file</button>
             <label for="picture">Select an image:</label>
             <input id="picture" type="file" accept="image/*" placeholder="insert picture">
             <button type ="submit" onclick="insertPicture(event)">save picture</button>
@@ -88,7 +89,8 @@ async function insertPicture(e) {
     renderWritingField();
 }
 
-async function insertFile() {
+async function insertFile(e) {
+    e.preventDefault();
     let files = document.querySelector('#file').files;
     let formData = new FormData();
 
@@ -101,8 +103,15 @@ async function insertFile() {
         body: formData
     });
     let uploadFile = await uploadResult.text();
+    console.log(uploadFile);
 
     let notes = {
+        id: currentNoteName.id,
+        name: currentNoteName.name,
+        content: currentNoteName.content,
+        uploadFile: uploadFile
+    }
+    currentNoteName = {
         id: currentNoteName.id,
         name: currentNoteName.name,
         content: currentNoteName.content,

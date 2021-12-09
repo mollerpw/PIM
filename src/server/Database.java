@@ -70,7 +70,6 @@ public class Database {
 
     public boolean updateNote(Note note) {
         try {
-
             PreparedStatement stmt = conn.prepareStatement("UPDATE notes SET content = ? , timestamp ='" + LocalDateTime.now() + "', imageURL = ? , uploadFile = ? WHERE id = ?");
             stmt.setString(1, note.getContent());
             stmt.setString(2, note.getImageURL());
@@ -171,6 +170,18 @@ public class Database {
         }
 
         return imageUrl;
+    }
+
+    public String uploadFile(FileItem file) {
+        String uploadFile = "/files/" + file.getName();
+
+        try (var outPutStream = new FileOutputStream(Paths.get("src/www" + uploadFile).toString())){
+            outPutStream.write(file.get());
+        }catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return uploadFile;
     }
 
 }
