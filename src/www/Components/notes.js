@@ -55,7 +55,7 @@ async function addNote(){
 }
 
 let currentNoteName = {
-
+    id: "",
     name: "",
     content: ""
 }
@@ -70,8 +70,9 @@ async function currentNote(index) {
     let tempContent = await updateCurrentContent();
 
     currentNoteName = {
-        name: document.getElementById("noteButton" + index).innerText,
-        content: tempContent
+        id: tempContent.id,
+        name: tempContent.name,
+        content: tempContent.content
     }
     //renderNotes(currentFolderName.name)
     renderWritingField();
@@ -81,8 +82,9 @@ async function updateCurrentContent() {
     let JSONNoteNames = await (await fetch('/notes')).json();
 
     for(let noteName of JSONNoteNames){
-        if (noteName.name == currentNoteName.name) {
-            return noteName.content;
+        if (noteName.name == currentNoteName.name && noteName.folder == currentFolderName.name) {
+
+            return noteName;
         }
     }
 }

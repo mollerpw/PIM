@@ -70,10 +70,10 @@ public class Database {
 
     public boolean updateNote(Note note) {
         try {
-            PreparedStatement stmt = conn.prepareStatement("UPDATE notes SET content = ? , timestamp ='" + LocalDateTime.now() + "', imageURL = ? WHERE name = ?");
+            PreparedStatement stmt = conn.prepareStatement("UPDATE notes SET content = ? , timestamp ='" + LocalDateTime.now() + "', imageURL = ? WHERE id = ?");
             stmt.setString(1, note.getContent());
             stmt.setString(2, note.getImageURL());
-            stmt.setString(3, note.getName());
+            stmt.setString(3, note.getId());
             stmt.executeUpdate();
             return true;
         }catch (Exception e) {
@@ -129,10 +129,10 @@ public class Database {
         }
     }
 
-    public boolean deleteNote(String note) {
+    public boolean deleteNote(Note note) {
         try {
-            PreparedStatement stmt = conn.prepareStatement("DELETE FROM Notes WHERE name = ?");
-            stmt.setString(1, note);
+            PreparedStatement stmt = conn.prepareStatement("DELETE FROM Notes WHERE id = ?");
+            stmt.setString(1, note.getId());
             stmt.executeUpdate();
             return true;
 
