@@ -19,7 +19,8 @@ async function saveNote(){
         name: currentNoteName.name,
         folder: currentFolderName.name,
         content: document.getElementById("textArea").value,
-        imageURL: currentNoteName.imageURL
+        imageURL: currentNoteName.imageURL,
+        uploadFile: currentNoteName.uploadFile
     }
 
     let result = await fetch("/notes", {
