@@ -2,9 +2,9 @@ document.querySelector('header').innerHTML = renderHeader();
 
 renderFolder();
 
-renderNotes();
+//renderNotes();
 
-document.querySelector('#writingfield').innerHTML = renderWritingField();
+renderWritingField();
 
 
 

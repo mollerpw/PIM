@@ -77,7 +77,7 @@ public class Main {
         app.delete("/notes", (req, res) -> {
             Note notes = (Note) req.getBody(Note.class);
             String note = notes.getName();
-            db.deleteNote(note);
+            res.json(db.deleteNote(note));
         });
 
         app.listen(2000);
