@@ -7,6 +7,7 @@ public class Note {
     private String timestamp;
     private String imageURL;
     private String id;
+    private String uploadFile;
 
 
     public Note() {
@@ -29,6 +30,14 @@ public class Note {
         this.content = content;
         this.folder = folder;
         this.imageURL = imageURL;
+    }
+
+    public Note(String name, String content, String folder, String imageURL, String uploadFile) {
+        this.name = name;
+        this.content = content;
+        this.folder = folder;
+        this.imageURL = imageURL;
+        this.uploadFile = uploadFile;
     }
 
     public String getName() {
@@ -77,5 +86,13 @@ public class Note {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getUploadFile() {
+        return uploadFile;
+    }
+
+    public void setUploadFile(String uploadFile) {
+        this.uploadFile = uploadFile;
     }
 }
