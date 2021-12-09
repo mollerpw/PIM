@@ -43,7 +43,7 @@ async function addFolder(){
     let response = await rawResponse.json();
 
     if (response === false) {
-    alert("Folder with that name already exists")
+        alert("Folder with that name already exists")
     }
     location.reload();
 }

@@ -6,8 +6,11 @@ public class Note {
     private String content;
     private String timestamp;
     private String imageURL;
+    private String id;
 
-    public Note() {}
+
+    public Note() {
+    }
 
 
     public Note(String name, String folder) {
@@ -66,5 +69,13 @@ public class Note {
 
     public void setImageURL(String imageURL) {
         this.imageURL = imageURL;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

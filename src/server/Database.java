@@ -83,17 +83,29 @@ public class Database {
 
     }
 
-    public boolean Create(String noteName, String folder){
+    public boolean Create(Note note) {
         try {
-            PreparedStatement stmt = conn.prepareStatement("INSERT INTO notes (name, folder, timestamp) VALUES ('" + noteName + "', '" + folder + "', '" + LocalDateTime.now() + "');");
-            stmt.execute();
-            return true;
-        } catch (SQLException e) {
+
+        PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Notes WHERE name = ? AND folder = ?");
+        stmt.setString(1, note.getName());
+        stmt.setString(2,note.getFolder());
+        ResultSet rs = stmt.executeQuery();
+
+        if (rs.next()) {
+            return false;
+        } else {
+
+                PreparedStatement stmt2 = conn.prepareStatement("INSERT INTO Notes (name, folder, timestamp) VALUES (?, ?, '" + LocalDateTime.now() + "');");
+                stmt2.setString(1,note.getName());
+                stmt2.setString(2,note.getFolder());
+                stmt2.executeUpdate();
+                return true;
+            }
+        }catch (SQLException e) {
             e.printStackTrace();
             return false;
         }
     }
-
     public boolean createFolder(String folder){
         try {
             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Folders WHERE name = ?");
