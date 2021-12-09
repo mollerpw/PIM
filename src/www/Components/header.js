@@ -110,6 +110,12 @@ async function insertFile(e) {
         content: currentNoteName.content,
         uploadFile: uploadFile
     }
+    currentNoteName = {
+        id: currentNoteName.id,
+        name: currentNoteName.name,
+        content: currentNoteName.content,
+        uploadFile: uploadFile
+    }
 
     await fetch("/notes", {
         method: "PUT",

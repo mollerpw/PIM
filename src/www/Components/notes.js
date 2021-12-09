@@ -60,7 +60,8 @@ let currentNoteName = {
     id: "",
     name: "",
     content: "",
-    imageURL: ""
+    imageURL: "",
+    uploadFile: ""
 }
 
 async function currentNote(index) {
@@ -76,7 +77,8 @@ async function currentNote(index) {
         id: tempContent.id,
         name: tempContent.name,
         content: tempContent.content,
-        imageURL: tempContent.imageURL
+        imageURL: tempContent.imageURL,
+        uploadFile: tempContent.uploadFile
     }
     //renderNotes(currentFolderName.name)
     renderWritingField();
