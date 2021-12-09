@@ -7,7 +7,7 @@ async function renderFolder() {
     for(let foldername of JSONfoldernames){
         output += `
         <p id="folderElement${index}" class="folderCSS">
-            <button onClick="temp_folder()">${foldername.name}</button>
+            <button id="folderButton${index}" class="folderButton" onClick="currentFolder(${index})">${foldername.name}</button>
             <button class="deleteFolderButton" onclick="deleteFolder(${index})">
                 <strong>-</strong>
             </button>
@@ -31,12 +31,15 @@ async function addFolder(){
     let folderName = {
         name: document.getElementById("folderInput").value
     };
-    saveNote()
+
+    saveNote();
+
     let rawResponse = await fetch('/folders', {
         method: "POST",
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(folderName)
     });
+
     let response = await rawResponse.json();
 
     if (response === false) {
@@ -58,4 +61,27 @@ async function deleteFolder(index){
     });
 
     location.reload();
+}
+
+let currentFolderName = {
+    name: ""
+}
+
+function currentFolder(index) {
+    saveNote();
+
+    currentFolderName = {
+        name: document.getElementById("folderElement" + index).innerText.substr(0, document.getElementById("folderElement" + index).innerText.length - 2)
+    }
+
+    //document.getElementById("folderButton" + index).style.backgroundColor = "red";
+    console.log(currentFolderName.name)
+
+    currentNoteName = {
+        name: "",
+        content: ""
+    }
+    
+    renderNotes(currentFolderName.name);
+    renderWritingField();
 }
