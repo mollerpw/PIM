@@ -84,6 +84,7 @@ async function insertPicture(e) {
         method: "PUT",
         body: JSON.stringify(notes)
     })
+    renderWritingField();
 }
 
 async function insertFile() {
