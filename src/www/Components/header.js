@@ -2,7 +2,9 @@ function renderHeader() {
     return `
         <h1>PIM</h1>
         <nav>
-            <input id="file" type="file" accept="txt" placeholder="insert file" onclick="insertFile()">
+            <label for="file">Select a file:</label>
+            <input id="file" type="file" accept="file_extension" placeholder="insert file">
+            <label for="picture">Select an image:</label>
             <input id="picture" type="file" accept="image/*" placeholder="insert picture">
             <button type ="submit" onclick="insertPicture(event)">save picture</button>
             <button onclick="deleteNote()">Delete note</button>
@@ -63,8 +65,8 @@ async function insertPicture(e) {
     console.log(imageURL);
 
     let notes = {
-        name: "något",
-        content: "ny image",
+        name: currentNoteName.name,
+        content: currentNoteName.content,
         imageURL: imageURL
     }
 
@@ -82,16 +84,16 @@ async function insertFile() {
         formData.append('files', file, file.name);
     }
 
-    let uploadResult = await fetch("/notes/pictures", {
+    let uploadResult = await fetch("/notes/files", {
         method: 'POST',
         body: formData
     });
-    let imageUrl = await uploadResult.text();
+    let uploadFile = await uploadResult.text();
 
     let notes = {
-        name: "något",
-        content: "ny image",
-        imageUrl: imageUrl
+        name: currentNoteName.name,
+        content: currentNoteName.content,
+        uploadFile: uploadFile
     }
 
     await fetch("/notes", {
