@@ -5,9 +5,6 @@ let notePrompt = false;
 async function renderNotes(folderName) {
 
     let JSONNoteNames = await (await fetch('/notes')).json();
-
-
-
     document.querySelector('#noteElement').innerHTML = ""
     let outputNote = "";
     let index = 0;
@@ -16,10 +13,9 @@ async function renderNotes(folderName) {
             outputNote += `
                 <button class="noteButton" id="noteButton${index}" onClick="currentNote(${index})">${noteName.name}</button> <br>
             `;
-            }
-            index++;
+        }
+        index++;
     }
-
     document.querySelector('#noteElement').insertAdjacentHTML("beforeend",outputNote);
 }
 
@@ -49,7 +45,6 @@ async function addNote(){
 
     location.reload();
     renderNotes(currentFolderName.name)
-
 }
 
 let currentNoteName = {
@@ -63,32 +58,24 @@ async function currentNote(index) {
         name: document.getElementById("noteButton" + index).innerText.substr(0, document.getElementById("noteButton" + index).innerText.length),
         content: ""
     }
+
     let tempContent = await updateCurrentContent();
+
     currentNoteName = {
         name: document.getElementById("noteButton" + index).innerText.substr(0, document.getElementById("noteButton" + index).innerText.length),
         content: tempContent
     }
-
     //renderNotes(currentFolderName.name)
     renderWritingField();
-    
-    
-
 }
 
 async function updateCurrentContent() {
     let JSONNoteNames = await (await fetch('/notes')).json();
-
-
-
     let outputContent = "";
     let index = 0;
     for(let noteName of JSONNoteNames){
-            if (noteName.name == currentNoteName.name) {
-                return noteName.content;
-                }
-                }
-                
+        if (noteName.name == currentNoteName.name) {
+            return noteName.content;
         }
-
-    
+    }                
+}
