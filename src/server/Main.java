@@ -20,9 +20,6 @@ public class Main {
 
        app.put("/notes", (req, res) -> {
            Note notes = (Note) req.getBody(Note.class);
-           String noteName = notes.getName();
-           String content = notes.getContent();
-           String imageURL = notes.getImageURL();
            res.json(db.updateNote(notes));
        });
 
@@ -76,8 +73,8 @@ public class Main {
 
         app.delete("/notes", (req, res) -> {
             Note notes = (Note) req.getBody(Note.class);
-            String note = notes.getName();
-            res.json(db.deleteNote(note));
+
+            res.json(db.deleteNote(notes));
         });
 
         app.listen(2000);
