@@ -22,8 +22,10 @@ public class Main {
            Note notes = (Note) req.getBody(Note.class);
            String noteName = notes.getName();
            String content = notes.getContent();
-           res.json(db.Write(noteName, content));
+           String imageURL = notes.getImageURL();
+           res.json(db.updateNote(notes));
        });
+
 
         app.get("/notes", (req, res) -> {
 

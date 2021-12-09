@@ -68,6 +68,21 @@ public class Database {
         }
     }
 
+    public boolean updateNote(Note note) {
+        try {
+            PreparedStatement stmt = conn.prepareStatement("UPDATE notes SET content = ? , timestamp ='" + LocalDateTime.now() + "', imageURL = ? WHERE name = ?");
+            stmt.setString(1, note.getContent());
+            stmt.setString(2, note.getImageURL());
+            stmt.setString(3, note.getName());
+            stmt.executeUpdate();
+            return true;
+        }catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+
+    }
+
     public boolean Create(String noteName, String folder){
         try {
             PreparedStatement stmt = conn.prepareStatement("INSERT INTO notes (name, folder, timestamp) VALUES ('" + noteName + "', '" + folder + "', '" + LocalDateTime.now() + "');");
