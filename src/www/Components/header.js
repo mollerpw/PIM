@@ -79,7 +79,8 @@ async function insertPicture(e) {
             id: currentNoteName.id,
             name: currentNoteName.name,
             content: currentNoteName.content,
-            imageURL: imageURL
+            imageURL: imageURL,
+            uploadFile: currentNoteName.uploadFile
         }
 
     await fetch("/notes", {
@@ -115,6 +116,7 @@ async function insertFile(e) {
         id: currentNoteName.id,
         name: currentNoteName.name,
         content: currentNoteName.content,
+        imageURL: currentNoteName.imageURL,
         uploadFile: uploadFile
     }
 
