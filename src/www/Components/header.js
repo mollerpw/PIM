@@ -19,7 +19,7 @@ async function saveNote(){
             id: currentNoteName.id,
             name: currentNoteName.name,
             folder: currentFolderName.name,
-            content: document.getElementById("textArea").value
+            content: document.getElementById("textArea").value,
             imageURL: currentNoteName.imageURL,
             uploadFile: currentNoteName.uploadFile
         }
