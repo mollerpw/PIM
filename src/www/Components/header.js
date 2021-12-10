@@ -8,6 +8,7 @@ function renderHeader() {
         <button type="submit" onclick="insertFile(event)">save file</button>
         <label for="picture">Select an image:</label>
         <input id="picture" type="file" accept="image/*" placeholder="insert picture">
+        <button type="submit" onclick="deletePicture(event)">delete picture</button>
         <button type ="submit" onclick="insertPicture(event)">save picture</button>
         <button onclick="deleteNote()">Delete note</button>
         <button onclick="saveNote()">Save note</button>
@@ -124,5 +125,21 @@ async function insertFile(e) {
         method: "PUT",
         body: JSON.stringify(notes)
     })
+    renderWritingField();
+}
+
+async function deletePicture() {
+    let deletedPicture = {
+        id: currentNoteName.id,
+        imageURL: currentNoteName.imageURL
+    }
+
+    await fetch("/notes/pictures", {
+        method: "PUT",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(deletedPicture)
+    });
+
+    currentNoteName.imageURL = "";
     renderWritingField();
 }
