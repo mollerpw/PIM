@@ -82,10 +82,10 @@ function currentFolder(index) {
     }
     
     for(let i=0; i<folderButton.length; i++){
-        document.getElementById(folderButton[i]).style.backgroundColor = "gray";
+        document.getElementById(folderButton[i]).style.backgroundColor = "#bdc2bd";
         
     }
-        document.getElementById("folderButton" + index).style.backgroundColor = "red";
+        document.getElementById("folderButton" + index).style.backgroundColor = "rgb(39, 39, 151)";
 
     currentNoteName = {
         name: "",
