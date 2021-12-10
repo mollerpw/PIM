@@ -93,9 +93,7 @@ flex: 1;
     height: 100%;
 }
 
-.folderButton:focus {
-background-color: yellow;
-}
+
 .noteButton {
     margin-bottom: 10px;
 
