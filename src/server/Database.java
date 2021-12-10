@@ -172,4 +172,16 @@ public class Database {
         return imageUrl;
     }
 
+    public String uploadFile(FileItem file) {
+        String uploadFile = "/files/" + file.getName();
+
+        try (var outPutStream = new FileOutputStream(Paths.get("src/www" + uploadFile).toString())){
+            outPutStream.write(file.get());
+        }catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return uploadFile;
+    }
+
 }

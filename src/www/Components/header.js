@@ -20,6 +20,8 @@ async function saveNote(){
             name: currentNoteName.name,
             folder: currentFolderName.name,
             content: document.getElementById("textArea").value
+            imageURL: currentNoteName.imageURL,
+            uploadFile: currentNoteName.uploadFile
         }
     
         let result = await fetch("/notes", {
@@ -72,14 +74,23 @@ async function insertPicture(e) {
         content: currentNoteName.content,
         imageURL: imageURL
     }
+        currentNoteName = {
+            id: currentNoteName.id,
+            name: currentNoteName.name,
+            content: currentNoteName.content,
+            imageURL: imageURL,
+            uploadFile: currentNoteName.uploadFile
+        }
 
     await fetch("/notes", {
         method: "PUT",
         body: JSON.stringify(notes)
     })
+    renderWritingField();
 }
 
-async function insertFile() {
+async function insertFile(e) {
+    e.preventDefault();
     let files = document.querySelector('#file').files;
     let formData = new FormData();
 
@@ -92,6 +103,7 @@ async function insertFile() {
         body: formData
     });
     let uploadFile = await uploadResult.text();
+    console.log(uploadFile);
 
     let notes = {
         id: currentNoteName.id,
@@ -99,9 +111,17 @@ async function insertFile() {
         content: currentNoteName.content,
         uploadFile: uploadFile
     }
+    currentNoteName = {
+        id: currentNoteName.id,
+        name: currentNoteName.name,
+        content: currentNoteName.content,
+        imageURL: currentNoteName.imageURL,
+        uploadFile: uploadFile
+    }
 
     await fetch("/notes", {
         method: "PUT",
         body: JSON.stringify(notes)
     })
+    renderWritingField();
 }

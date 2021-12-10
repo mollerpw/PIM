@@ -52,6 +52,20 @@ public class Main {
             res.send(imageUrl);
         });
 
+        app.post("/notes/files", (req, res) -> {
+           String uploadFile = null;
+
+           try {
+               List<FileItem> files = req.getFormData("files");
+               uploadFile = db.uploadFile(files.get(0));
+           } catch (IOException e) {
+               e.printStackTrace();
+           } catch (FileUploadException e) {
+               e.printStackTrace();
+           }
+           res.send(uploadFile);
+        });
+
         app.post("/notes", (req, res) -> {
             Note notes = (Note) req.getBody(Note.class);
             res.json(db.Create(notes));
