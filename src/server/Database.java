@@ -172,6 +172,18 @@ public class Database {
         return imageUrl;
     }
 
+    public boolean deleteImage(String imageUrl, String id) {
+        try {
+            PreparedStatement stmt = conn.prepareStatement("UPDATE Notes SET imageURL = Null WHERE id = ?");
+            stmt.setString(1, id);
+            stmt.executeUpdate();
+            return true;
+        }catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
     public String uploadFile(FileItem file) {
         String uploadFile = "/files/" + file.getName();
 
