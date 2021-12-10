@@ -70,19 +70,20 @@ let currentFolderName = {
 function currentFolder(index) {
     saveNote();
 
+    document.querySelector("header").innerHTML = "";
+    document.querySelector("header").innerHTML = "<h1>PIM</h1>";
+    document.querySelector("#writingfield").innerHTML = "<h3> Create a new note or select a note to start. </h3>";
+
     currentFolderName = {
         name: document.getElementById("folderElement" + index).innerText.substr(0, document.getElementById("folderElement" + index).innerText.length - 2)
     }
 
     //document.getElementById("folderButton" + index).style.backgroundColor = "red";
-    console.log(currentFolderName.name)
 
     currentNoteName = {
         name: "",
         content: "",
         id: ""
     }
-    
     renderNotes(currentFolderName.name);
-    renderWritingField();
 }

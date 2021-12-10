@@ -3,10 +3,25 @@ let notePrompt = false;
 
 
 async function renderNotes(folderName) {
-
-    let JSONNoteNames = await (await fetch('/notes')).json();
-    document.querySelector('#noteElement').innerHTML = ""
     let outputNote = "";
+    let HTMLpos = "";
+    let HTMLorigin = "";
+    
+    let JSONNoteNames = await (await fetch('/notes')).json();
+
+    if(document.querySelector("#notes") == null){
+        outputNote = `<div class="notes" id="notes">
+        <h2>Notes <button class="addButton" onClick="addNotePrompt()">+</button> </h2>`;
+        HTMLpos = "afterend";
+        HTMLorigin = "#folder";
+        document.getElementById("writingfield").style.flex = 4;
+    }
+    else{
+        HTMLpos = "beforeend";
+        HTMLorigin = "#notes";
+        document.querySelector("#notes").innerHTML = '<h2>Notes <button class="addButton" onClick="addNotePrompt()">+</button> </h2>';
+    }
+    
     let index = 0;
     for(let noteName of JSONNoteNames){
         if (noteName.folder == folderName) {
@@ -16,13 +31,11 @@ async function renderNotes(folderName) {
         }
         index++;
     }
- 
-    document.querySelector('#noteElement').insertAdjacentHTML("beforeend",outputNote);
+    document.querySelector(HTMLorigin).insertAdjacentHTML(HTMLpos,outputNote);
 }
 
 
 function addNotePrompt(){
-    console.log("prmotp");
     if(!notePrompt){
         document.querySelector('#notes').insertAdjacentHTML("beforeend", `
         <input type="text" id="noteInput" name="fname"></input>
@@ -32,20 +45,16 @@ function addNotePrompt(){
 }
 
 async function addNote(){
-    console.log(currentFolderName.name)
     let noteNameToAdd = {
         name: document.getElementById("noteInput").value,
         folder: currentFolderName.name
     };
-    console.log(noteNameToAdd);
-    //saveNote()
     let rawResponse = await fetch('/notes', {
         method: "POST",
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(noteNameToAdd)
     });
     let response = await rawResponse.json();
-    console.log(response)
     if (response === false) {
         alert("A note with this name already exist in current folder")
     }else {
@@ -78,6 +87,7 @@ async function currentNote(index) {
     }
     //renderNotes(currentFolderName.name)
     renderWritingField();
+    renderHeader();
 }
 
 async function updateCurrentContent() {
