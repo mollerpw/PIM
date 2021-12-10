@@ -2,7 +2,7 @@ function renderHeader() {
     document.querySelector("header").innerHTML = "";
     document.querySelector("header").innerHTML = `
     <nav>
-        <h1>Pim</h1>
+        <h1>PIM</h1>
         <label for="file">Select a file:</label>
         <input id="file" type="file" accept="file_extension" placeholder="insert file">
         <label for="picture">Select an image:</label>
