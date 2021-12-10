@@ -1,10 +1,11 @@
 let folderPrompt = false;
-
+let folderButton = [];
 async function renderFolder() {
     let JSONfoldernames = await (await fetch('/folders')).json();
     let output = "";
     let index = 0;
     for(let foldername of JSONfoldernames){
+        folderButton[index] = "folderButton"+index
         output += `
         <p id="folderElement${index}" class="folderCSS">
             <button id="folderButton${index}" class="folderButton" onClick="currentFolder(${index})">${foldername.name}</button>
@@ -13,6 +14,7 @@ async function renderFolder() {
             </button>
         </p>`;
         index++;
+
     }
     document.querySelector("#folder").insertAdjacentHTML("beforeend",output);
 }
@@ -70,6 +72,7 @@ let currentFolderName = {
 function currentFolder(index) {
     saveNote();
 
+
     document.querySelector("header").innerHTML = "";
     document.querySelector("header").innerHTML = "<h1>PIM</h1>";
     document.querySelector("#writingfield").innerHTML = "<h3> Create a new note or select a note to start. </h3>";
@@ -77,8 +80,12 @@ function currentFolder(index) {
     currentFolderName = {
         name: document.getElementById("folderElement" + index).innerText.substr(0, document.getElementById("folderElement" + index).innerText.length - 2)
     }
-
-    //document.getElementById("folderButton" + index).style.backgroundColor = "red";
+    
+    for(let i=0; i<folderButton.length; i++){
+        document.getElementById(folderButton[i]).style.backgroundColor = "gray";
+        
+    }
+        document.getElementById("folderButton" + index).style.backgroundColor = "red";
 
     currentNoteName = {
         name: "",
