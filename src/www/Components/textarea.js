@@ -4,6 +4,6 @@ function renderWritingField() {
     } else if (currentNoteName.uploadFile == null || currentNoteName.uploadFile == ""){
         document.querySelector("#writingfield").innerHTML = `<img id="img" src=${currentNoteName.imageURL}></img><textarea id=textArea placeholder= "Write here...">${currentNoteName.content}</textarea>`
     }else {
-        document.querySelector("#writingfield").innerHTML = `<img id="img" src=${currentNoteName.imageURL}></img><a href="${currentNoteName.uploadFile}" download>Download ${currentNoteName.uploadFile}</a><textarea id=textArea placeholder= "Write here...">${currentNoteName.content}</textarea>`
+        document.querySelector("#writingfield").innerHTML = `<img id="img" src=${currentNoteName.imageURL}></img><a href="${currentNoteName.uploadFile}" download><button id="download">${currentNoteName.uploadFile}</button></a><textarea id=textArea placeholder= "Write here...">${currentNoteName.content}</textarea>`
     }
 }
