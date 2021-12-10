@@ -1,35 +1,36 @@
 function renderHeader() {
-    return `
-        <h1>PIM</h1>
-        <nav>
-            <label for="file">Select a file:</label>
-            <input id="file" type="file" accept="file_extension" placeholder="insert file">
-            <button type="submit" onclick="insertFile(event)">save file</button>
-            <label for="picture">Select an image:</label>
-            <input id="picture" type="file" accept="image/*" placeholder="insert picture">
-            <button type ="submit" onclick="insertPicture(event)">save picture</button>
-            <button onclick="deleteNote()">Delete note</button>
-            <button onclick="saveNote()">Save note</button>
-        </nav>
-    `
+    document.querySelector("header").innerHTML = "";
+    document.querySelector("header").innerHTML = `
+    <nav>
+        <h1>Pim</h1>
+        <label for="file">Select a file:</label>
+        <input id="file" type="file" accept="file_extension" placeholder="insert file">
+        <label for="picture">Select an image:</label>
+        <input id="picture" type="file" accept="image/*" placeholder="insert picture">
+        <button type ="submit" onclick="insertPicture(event)">save picture</button>
+        <button onclick="deleteNote()">Delete note</button>
+        <button onclick="saveNote()">Save note</button>
+    </nav>`
 }
 
 async function saveNote(){
-    let savedNote = {
-        id: currentNoteName.id,
-        name: currentNoteName.name,
-        folder: currentFolderName.name,
-        content: document.getElementById("textArea").value,
-        imageURL: currentNoteName.imageURL,
-        uploadFile: currentNoteName.uploadFile
+    if(document.querySelector("#textArea") != null){
+        let savedNote = {
+            id: currentNoteName.id,
+            name: currentNoteName.name,
+            folder: currentFolderName.name,
+            content: document.getElementById("textArea").value,
+            imageURL: currentNoteName.imageURL,
+            uploadFile: currentNoteName.uploadFile
+        }
+    
+        let result = await fetch("/notes", {
+            method: "PUT",
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(savedNote)
+        });
+        //let response = await result.json();
     }
-
-    let result = await fetch("/notes", {
-        method: "PUT",
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(savedNote)
-    });
-    //let response = await result.json();
 }
 
 async function deleteNote(){
@@ -50,7 +51,6 @@ async function deleteNote(){
         content: ""
     }
     renderNotes(currentFolderName.name);
-    renderWritingField();
 }
 
 async function insertPicture(e) {
@@ -67,7 +67,6 @@ async function insertPicture(e) {
         body: formData
     });
     let imageURL = await uploadResult.text();
-    console.log(imageURL);
 
     let notes = {
         id: currentNoteName.id,

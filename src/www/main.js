@@ -1,12 +1,6 @@
-document.querySelector('header').innerHTML = renderHeader();
+document.querySelector('header').innerHTML = "<h1>Pim</h1>";
 
 renderFolder();
-
-//renderNotes();
-
-renderWritingField();
-
-
 
 /* 
 onhashchange = changePage;
