@@ -6,7 +6,7 @@ body {
 
 header {
     color: white;
-    background: rgb(2, 2, 71);
+    background: rgb(39, 39, 151);
     display: flex;
 }
 
@@ -93,9 +93,7 @@ flex: 1;
     height: 100%;
 }
 
-.folderButton:focus {
-background-color: yellow;
-}
+
 .noteButton {
     margin-bottom: 10px;
 
@@ -111,7 +109,7 @@ img:hover {
     width: 300px;
 }
 .folderButton {
-    background-color: #bdc2bd; /* Green */
+    background-color: #bdc2bd; 
     border: none;
     color: white;
     padding: 15px 25px;
@@ -126,7 +124,7 @@ img:hover {
 
 .deleteFolderButton {
 
-    background-color: #bdc2bd; /* Green */
+    background-color: #bdc2bd; 
     border: none;
     color: white;
     padding: 15px 25px;
