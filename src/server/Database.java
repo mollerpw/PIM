@@ -196,4 +196,17 @@ public class Database {
         return uploadFile;
     }
 
+    public boolean deleteFile(String uploadFile, String id) {
+
+        try {
+            PreparedStatement stmt = conn.prepareStatement("UPDATE Notes SET uploadFile = Null WHERE id = ?");
+            stmt.setString(1, id);
+            stmt.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
 }
