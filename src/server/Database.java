@@ -163,7 +163,7 @@ public class Database {
 
     public boolean deleteImage(String imageUrl, String id) {
         try {
-            PreparedStatement stmt = conn.prepareStatement("UPDATE Notes SET imageURL = Null WHERE id = ?");
+            PreparedStatement stmt = conn.prepareStatement("UPDATE Notes SET imageURL = NULL WHERE id = ?");
             stmt.setString(1, id);
             stmt.executeUpdate();
             return true;
