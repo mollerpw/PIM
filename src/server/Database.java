@@ -57,17 +57,6 @@ public class Database {
     }
 
 
-    public boolean Write(String noteName, String content){
-        try {
-            PreparedStatement stmt = conn.prepareStatement("UPDATE notes SET content= '" + content + "', timestamp ='" + LocalDateTime.now() + "' WHERE name='" + noteName + "';");
-            stmt.execute();
-            return true;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-
     public boolean updateNote(Note note) {
         try {
             PreparedStatement stmt = conn.prepareStatement("UPDATE notes SET content = ? , timestamp ='" + LocalDateTime.now() + "', imageURL = ? , uploadFile = ? WHERE id = ?");
@@ -174,7 +163,7 @@ public class Database {
 
     public boolean deleteImage(String imageUrl, String id) {
         try {
-            PreparedStatement stmt = conn.prepareStatement("UPDATE Notes SET imageURL = Null WHERE id = ?");
+            PreparedStatement stmt = conn.prepareStatement("UPDATE Notes SET imageURL = NULL WHERE id = ?");
             stmt.setString(1, id);
             stmt.executeUpdate();
             return true;
@@ -199,7 +188,7 @@ public class Database {
     public boolean deleteFile(String uploadFile, String id) {
 
         try {
-            PreparedStatement stmt = conn.prepareStatement("UPDATE Notes SET uploadFile = Null WHERE id = ?");
+            PreparedStatement stmt = conn.prepareStatement("UPDATE Notes SET uploadFile = NULL WHERE id = ?");
             stmt.setString(1, id);
             stmt.executeUpdate();
             return true;

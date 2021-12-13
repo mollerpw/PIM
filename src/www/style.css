@@ -29,6 +29,7 @@ h1 {
     display: flex;
     flex: 1;
     margin-left: 20px;
+    font: 32px;
 }
 
 h2 {
@@ -85,6 +86,7 @@ flex: 1;
 #imgFileDiv {
     display: flex;
     border: none;
+    align-items: flex-end;
 }
 
 #textArea {
@@ -114,9 +116,7 @@ flex: 1;
     margin-bottom: 10px;
 
 }
-.noteButton:focus {
-    background-color: rgb(39, 39, 151);
-}
+
 img {
     width: 150px;
     display: flex;
@@ -141,6 +141,7 @@ img:hover {
     border-radius: 4px;
     margin-right: 5px;
   }
+
 
 .deleteFolderButton {
 
@@ -205,7 +206,7 @@ input[type="file"] {
     flex: 1;
     border-radius: 4px;
     margin-right: 5px;
-    flex-grow: 0.1;
+    
     cursor: pointer;
     display: flex;
     align-items: flex-end;

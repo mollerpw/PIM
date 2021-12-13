@@ -1,14 +1,17 @@
 function renderHeader() {
     document.querySelector("header").innerHTML = "";
     document.querySelector("header").innerHTML = `
+    <h1>PIM</h1>
     <nav>
-        <h1>PIM</h1>
-        <label for="file">Select a file:</label>
-        <input id="file" type="file" accept="file_extension" placeholder="insert file">
-        <button class="headerButton" type="submit" onclick="insertFile(event)">save file</button>
-        <label for="picture">Select an image:</label>
-        <input id="picture" type="file" accept="image/*" placeholder="insert picture">
-        <button class="headerButton" type ="submit" onclick="insertPicture(event)">save picture</button>
+
+        <button class="headerButton" onclick="document.getElementById('file').click()">Choose file</button>
+        <input id="file" type="file" style="display:none" accept="file_extension" placeholder="insert file">
+        <button class="headerButton" type="submit" onclick="insertFile(event)">Save file</button>
+        
+        <button class="headerButton" onclick="document.getElementById('picture').click()">Choose picture</button>
+        <input id="picture" type="file" style="display:none" accept="image/*" placeholder="insert picture">
+        <button class="headerButton" type ="submit" onclick="insertPicture(event)">Save picture</button>
+        <button class="headerButton" type="submit" onclick="deletePicture(event)">Delete picture</button>
         <button class="headerButton" onclick="deleteNote()">Delete note</button>
         <button class="headerButton" onclick="saveNote()">Save note</button>
     </nav>`
@@ -52,6 +55,7 @@ async function deleteNote(){
         content: ""
     }
     renderNotes(currentFolderName.name);
+    renderWritingField();
 }
 
 async function insertPicture(e) {
@@ -124,5 +128,36 @@ async function insertFile(e) {
         method: "PUT",
         body: JSON.stringify(notes)
     })
+    renderWritingField();
+}
+
+async function deletePicture() {
+    let deletedPicture = {
+        id: currentNoteName.id,
+        imageURL: currentNoteName.imageURL
+    }
+
+    await fetch("/notes/pictures", {
+        method: "PUT",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(deletedPicture)
+    });
+
+    currentNoteName.imageURL = null;
+    renderWritingField();
+}
+
+async function deleteFile() {
+    let deletedFile = {
+        id: currentNoteName.id,
+        uploadFile: currentNoteName.uploadFile
+    }
+
+    await fetch("/notes/files", {
+        method: "PUT",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(deletedFile)
+    });
+    currentNoteName.uploadFile = null;
     renderWritingField();
 }
