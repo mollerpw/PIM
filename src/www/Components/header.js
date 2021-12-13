@@ -143,3 +143,18 @@ async function deletePicture() {
     currentNoteName.imageURL = null;
     renderWritingField();
 }
+
+async function deleteFile() {
+    let deletedFile = {
+        id: currentNoteName.id,
+        uploadFile: currentNoteName.uploadFile
+    }
+
+    await fetch("/notes/files", {
+        method: "PUT",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(deletedFile)
+    });
+    currentNoteName.uploadFile = null;
+    renderWritingField();
+}

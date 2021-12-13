@@ -199,7 +199,7 @@ public class Database {
     public boolean deleteFile(String uploadFile, String id) {
 
         try {
-            PreparedStatement stmt = conn.prepareStatement("UPDATE Notes SET uploadFile = Null WHERE id = ?");
+            PreparedStatement stmt = conn.prepareStatement("UPDATE Notes SET uploadFile = NULL WHERE id = ?");
             stmt.setString(1, id);
             stmt.executeUpdate();
             return true;
