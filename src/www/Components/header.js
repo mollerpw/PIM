@@ -1,8 +1,8 @@
 function renderHeader() {
     document.querySelector("header").innerHTML = "";
     document.querySelector("header").innerHTML = `
+    <h1>PIM</h1>
     <nav>
-        <h1>PIM</h1>
         <label for="file">Select a file:</label>
         <input id="file" type="file" accept="file_extension" placeholder="insert file">
         <button class="headerButton" type="submit" onclick="insertFile(event)">save file</button>
