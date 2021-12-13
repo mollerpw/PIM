@@ -53,7 +53,6 @@ h2 {
 .container div{
     border-right: 2px solid black;
     padding: 10px;
-    height: 85vh;
 
 }
 
@@ -83,6 +82,10 @@ flex: 1;
     flex: 5;
 
 }
+#imgFileDiv {
+    display: flex;
+    border: none;
+}
 
 #textArea {
     flex-grow: 1;
@@ -92,8 +95,21 @@ flex: 1;
     width: 100%;
     height: 100%;
 }
-
-
+.headerButton {
+    background-color: white;
+    border: none;
+    color: black;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin-right: 5px;
+    border-radius: 4px;
+}
+.headerButton:hover {
+    background-color:rgb(65, 65, 197)
+}
 .noteButton {
     margin-bottom: 10px;
 
@@ -103,11 +119,15 @@ flex: 1;
 }
 img {
     width: 150px;
+    display: flex;
+    height: 84.39px;
+    margin-right: 10px;
 }
-
 img:hover {
     width: 300px;
+    height: 168.78px;
 }
+
 .folderButton {
     background-color: #bdc2bd; 
     border: none;
@@ -142,7 +162,7 @@ img:hover {
     }
 
 .noteButton {
-    background-color: #bdc2bd; /* Green */
+    background-color: #bdc2bd; 
     border: none;
     color: white;
     padding: 15px 32px;
@@ -182,7 +202,7 @@ input[type="file"] {
 }
 
 #download {
-    background-color: #bdc2bd; /* Green */
+    background-color: #bdc2bd; 
     border: none;
     color: white;
     padding: 15px 32px;
@@ -192,8 +212,17 @@ input[type="file"] {
     flex: 1;
     border-radius: 4px;
     margin-right: 5px;
-    flex-grow: 1;
+    flex-grow: 0.1;
     cursor: pointer;
+    display: flex;
+    align-items: flex-end;
+    text-decoration: none;
+    
+}
+#downloadATag {
+    display: flex;
+    align-items: flex-end;
+    text-decoration: none;
 }
 
 #download:hover {

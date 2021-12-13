@@ -91,6 +91,20 @@ public class Main {
             res.json(db.deleteNote(notes));
         });
 
+        app.put("/notes/pictures", (req, res) -> {
+            Note notes = (Note) req.getBody(Note.class);
+            String id = notes.getId();
+            String imageUrl = notes.getImageURL();
+            res.json(db.deleteImage(imageUrl, id));
+        });
+
+        app.put("/notes/files", (req, res) -> {
+            Note notes = (Note) req.getBody(Note.class);
+            String id = notes.getId();
+            String uploadFile = notes.getUploadFile();
+            res.json(db.deleteFile(uploadFile, id));
+        });
+
         app.listen(2000);
         System.out.println("Server started on port 2000");
 
