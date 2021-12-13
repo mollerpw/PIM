@@ -141,6 +141,6 @@ async function deletePicture() {
         body: JSON.stringify(deletedPicture)
     });
 
-    currentNoteName.imageURL = "";
+    currentNoteName.imageURL = null;
     renderWritingField();
 }
