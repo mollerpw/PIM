@@ -153,10 +153,7 @@ img:hover {
     font-size: 16px;
     border-radius: 4px;
 }
-.folderButton:hover {
-    background-color:rgb(65, 65, 197)
 
-}
 .deleteFolderButton:hover {
     background-color:rgb(65, 65, 197)
     }
@@ -173,10 +170,6 @@ img:hover {
     border-radius: 4px;
     margin-right: 5px;
     flex-grow: 1;
-
-}
-.noteButton:hover {
-    background-color:rgb(65, 65, 197)
 
 }
 

@@ -1,7 +1,7 @@
 
 let notePrompt = false;
 
-
+let noteButton = [];
 async function renderNotes(folderName) {
     let outputNote = "";
     let HTMLpos = "";
@@ -25,12 +25,14 @@ async function renderNotes(folderName) {
     let index = 0;
     for(let noteName of JSONNoteNames){
         if (noteName.folder == folderName) {
+            noteButton[index] = "noteButton" + index;
             outputNote += `
                 <button class="noteButton" id="noteButton${index}" onClick="currentNote(${index})">${noteName.name}</button> <br>
             `;
+            index++;
         }
-        index++;
     }
+    noteButton.length = index;
     document.querySelector(HTMLorigin).insertAdjacentHTML(HTMLpos,outputNote);
 }
 
@@ -89,7 +91,13 @@ async function currentNote(index) {
         imageURL: tempContent.imageURL,
         uploadFile: tempContent.uploadFile
     }
-    //renderNotes(currentFolderName.name)
+    
+    for(let i = 0;i < noteButton.length;i++){
+        document.getElementById(noteButton[i]).style.backgroundColor = "#bdc2bd";
+    }
+
+    document.getElementById("noteButton" + index).style.backgroundColor = "rgb(39, 39, 151)";
+
     renderWritingField();
     renderHeader();
 }
