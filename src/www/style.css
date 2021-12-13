@@ -86,6 +86,7 @@ flex: 1;
 #imgFileDiv {
     display: flex;
     border: none;
+    align-items: flex-end;
 }
 
 #textArea {
@@ -141,6 +142,7 @@ img:hover {
     margin-right: 5px;
   }
 
+
 .deleteFolderButton {
 
     background-color: #bdc2bd; 
@@ -151,6 +153,7 @@ img:hover {
     display: inline-block;
     font-size: 16px;
     border-radius: 4px;
+
 }
 
 .deleteFolderButton:hover {
@@ -208,7 +211,7 @@ input[type="file"] {
     flex: 1;
     border-radius: 4px;
     margin-right: 5px;
-    flex-grow: 0.1;
+    
     cursor: pointer;
     display: flex;
     align-items: flex-end;

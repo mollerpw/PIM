@@ -6,12 +6,12 @@ function renderHeader() {
 
         <button class="headerButton" onclick="document.getElementById('file').click()">Choose file</button>
         <input id="file" type="file" style="display:none" accept="file_extension" placeholder="insert file">
-        <button class="headerButton" type="submit" onclick="insertFile(event)">save file</button>
+        <button class="headerButton" type="submit" onclick="insertFile(event)">Save file</button>
         
         <button class="headerButton" onclick="document.getElementById('picture').click()">Choose picture</button>
         <input id="picture" type="file" style="display:none" accept="image/*" placeholder="insert picture">
-        <button class="headerButton" type ="submit" onclick="insertPicture(event)">save picture</button>
-        <button class="headerButton" type="submit" onclick="deletePicture(event)">delete picture</button>
+        <button class="headerButton" type ="submit" onclick="insertPicture(event)">Save picture</button>
+        <button class="headerButton" type="submit" onclick="deletePicture(event)">Delete picture</button>
         <button class="headerButton" onclick="deleteNote()">Delete note</button>
         <button class="headerButton" onclick="saveNote()">Save note</button>
     </nav>`
@@ -55,6 +55,7 @@ async function deleteNote(){
         content: ""
     }
     renderNotes(currentFolderName.name);
+    renderWritingField();
 }
 
 async function insertPicture(e) {
