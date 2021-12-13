@@ -3,17 +3,22 @@ function renderHeader() {
     document.querySelector("header").innerHTML = `
     <h1>PIM</h1>
     <nav>
-
+        <div>
         <button class="headerButton" onclick="document.getElementById('file').click()">Choose file</button>
         <input id="file" type="file" style="display:none" accept="file_extension" placeholder="insert file">
         <button class="headerButton" type="submit" onclick="insertFile(event)">Save file</button>
-        
+        </div>
+        <div>
         <button class="headerButton" onclick="document.getElementById('picture').click()">Choose picture</button>
         <input id="picture" type="file" style="display:none" accept="image/*" placeholder="insert picture">
         <button class="headerButton" type ="submit" onclick="insertPicture(event)">Save picture</button>
         <button class="headerButton" type="submit" onclick="deletePicture(event)">Delete picture</button>
+        </div>
+        <div>
         <button class="headerButton" onclick="deleteNote()">Delete note</button>
         <button class="headerButton" onclick="saveNote()">Save note</button>
+        </div>
+
     </nav>`
 }
 

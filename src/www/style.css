@@ -13,7 +13,7 @@ header {
 nav {
     display: flex;
     justify-content: space-evenly;
-    flex: 3;
+    flex: 2;
     align-items: flex-end;
     padding: 10px;
 }
@@ -106,7 +106,6 @@ flex: 1;
     text-decoration: none;
     display: inline-block;
     font-size: 12px;
-    margin-right: 5px;
     border-radius: 4px;
 }
 .headerButton:hover {
