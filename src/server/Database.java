@@ -57,17 +57,6 @@ public class Database {
     }
 
 
-    public boolean Write(String noteName, String content){
-        try {
-            PreparedStatement stmt = conn.prepareStatement("UPDATE notes SET content= '" + content + "', timestamp ='" + LocalDateTime.now() + "' WHERE name='" + noteName + "';");
-            stmt.execute();
-            return true;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-
     public boolean updateNote(Note note) {
         try {
             PreparedStatement stmt = conn.prepareStatement("UPDATE notes SET content = ? , timestamp ='" + LocalDateTime.now() + "', imageURL = ? , uploadFile = ? WHERE id = ?");
