@@ -8,9 +8,8 @@ function renderHeader() {
         <button class="headerButton" type="submit" onclick="insertFile(event)">save file</button>
         <label for="picture">Select an image:</label>
         <input id="picture" type="file" accept="image/*" placeholder="insert picture">
-
-        <button type="submit" onclick="deletePicture(event)">delete picture</button>
         <button class="headerButton" type ="submit" onclick="insertPicture(event)">save picture</button>
+        <button class="headerButton" type="submit" onclick="deletePicture(event)">delete picture</button>
         <button class="headerButton" onclick="deleteNote()">Delete note</button>
         <button class="headerButton" onclick="saveNote()">Save note</button>
     </nav>`
