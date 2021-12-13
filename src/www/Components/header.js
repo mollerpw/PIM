@@ -55,7 +55,8 @@ async function deleteNote(){
         content: ""
     }
     renderNotes(currentFolderName.name);
-    renderWritingField();
+    document.querySelector("header").innerHTML = "<h1>PIM</h1>";
+    document.querySelector("#writingfield").innerHTML = "<h3> Create a new note or select a note to start. </h3>";
 }
 
 async function insertPicture(e) {
