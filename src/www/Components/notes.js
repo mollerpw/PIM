@@ -7,9 +7,11 @@ async function renderNotes(folderName) {
     let HTMLpos = "";
     let HTMLorigin = "";
     
-    let JSONNoteNames = await (await fetch('/notes')).json();
+    let JSONNoteNames = await (await fetch('/notes')).json(); // fetches every note in the database
 
-    if(document.querySelector("#notes") == null){
+    //checks if the note div exists, if it doesn't: it adds the div after the folder div. 
+    //if it does: it re adds the note title with the add note button and at the same time removes every note in the list
+    if(document.querySelector("#notes") == null){   
         outputNote = `<div class="notes" id="notes">
         <h2>Notes <button class="addButton" onClick="addNotePrompt()">+</button> </h2>`;
         HTMLpos = "afterend";
@@ -21,11 +23,11 @@ async function renderNotes(folderName) {
         HTMLorigin = "#notes";
         document.querySelector("#notes").innerHTML = '<h2>Notes <button class="addButton" onClick="addNotePrompt()">+</button> </h2>';
     }
-    
+    // go's through every note and adds the notes in the current folder the html element in the form of a string to the outputNote variable
     let index = 0;
     for(let noteName of JSONNoteNames){
         if (noteName.folder == folderName) {
-            noteButton[index] = "noteButton" + index;
+            noteButton[index] = "noteButton" + index; // adds the notebutton in an array so we can identify it when we want to change color of it when you click it
             outputNote += `
                 <button class="noteButton" id="noteButton${index}" onClick="currentNote(${index})">${noteName.name}</button> <br>
             `;
