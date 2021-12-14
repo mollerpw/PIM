@@ -83,7 +83,7 @@ async function insertPicture(e) {
         currentNoteName = {
             id: currentNoteName.id,
             name: currentNoteName.name,
-            content: currentNoteName.content,
+            content: document.getElementById("textArea").value,
             imageURL: imageURL,
             uploadFile: currentNoteName.uploadFile
         }
@@ -121,7 +121,7 @@ async function insertFile(e) {
     currentNoteName = {
         id: currentNoteName.id,
         name: currentNoteName.name,
-        content: currentNoteName.content,
+        content: document.getElementById("textArea").value,
         imageURL: currentNoteName.imageURL,
         uploadFile: uploadFile
     }
@@ -145,7 +145,7 @@ async function deletePicture() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(deletedPicture)
     });
-
+    currentNoteName.content = document.getElementById("textArea").value;
     currentNoteName.imageURL = null;
     renderWritingField();
 }
@@ -162,6 +162,7 @@ async function deleteFile() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(deletedFile)
     });
+    currentNoteName.content = document.getElementById("textArea").value;
     currentNoteName.uploadFile = null;
     renderWritingField();
 }
