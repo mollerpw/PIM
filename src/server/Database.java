@@ -15,6 +15,7 @@ public class Database {
 
     private Connection conn;
 
+    // Constructor which connects to database and prints true if it works.
     public Database ()  {
         try {
             conn = DriverManager.getConnection("jdbc:sqlite:PIM.db");
@@ -25,7 +26,7 @@ public class Database {
             e.printStackTrace();
         }
     }
-
+    //Select all notes from the database in order of newest first, returns them as an ArrayList
     public List<Note> Read(){
         List<Note> notes = null;
         try {
@@ -40,7 +41,7 @@ public class Database {
         }
         return notes;
     }
-
+    //Select all folders from the database, returns them as an ArrayList
     public List<Folder> readFolder(){
         List<Folder> folders = null;
         try {
@@ -73,7 +74,8 @@ public class Database {
         }
 
     }
-
+    //Tries to create a new note, if a note with that name already exists in this folder it returns false
+    //Otherwise it gets created and true is returned.
     public boolean Create(Note note) {
         try {
 
@@ -98,6 +100,8 @@ public class Database {
         }
     }
 
+    //Tries to create a new folder, if a folder with that name already exists it returns false
+    //Otherwise it gets created and true is returned.
     public boolean createFolder(String folder){
         try {
             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Folders WHERE name = ?");

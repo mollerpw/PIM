@@ -1,3 +1,4 @@
+//Renders the navigation menu
 function renderHeader() {
     document.querySelector("header").innerHTML = `
     <h1>PIM</h1>

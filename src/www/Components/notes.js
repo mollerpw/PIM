@@ -1,6 +1,6 @@
 
 let notePrompt = false;
-
+//Global variable that updates when you navigate to render the correct response
 let currentNoteName = {
     id: "",
     name: "",

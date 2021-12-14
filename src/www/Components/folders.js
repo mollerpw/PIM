@@ -48,15 +48,15 @@ async function addFolder(){
 
     let response = await rawResponse.json();
 
-    if (response == false) {        // checks if the folder alreadt exist in the database
+    if (response == false) {        // checks if the folder already exist in the database
         alert("Folder with that name already exists")
     }
-    location.reload();  // reloads the webbpage whitch automaticaly removes the prompt and renders in the new folder
+    location.reload();  // reloads the webbpage which automaticaly removes the prompt and renders in the new folder
 }
 
 async function deleteFolder(index){
 
-    folderName = {  //saves the name of the folder by taking all readable text from the html and removes the two last charakters in the string whitch is always: - and \n
+    folderName = {  //saves the name of the folder by taking all readable text from the html and removes the two last characters in the string which is always: - and \n
         name: document.getElementById("folderElement" + index).innerText.substr(0, document.getElementById("folderElement" + index).innerText.length - 2)
     }
 
@@ -75,7 +75,7 @@ function currentFolder(index) {
     document.querySelector("header").innerHTML = "<h1>PIM</h1>"; // removes the header buttons for the writing field
     document.querySelector("#writingfield").innerHTML = "<h3> Create a new note or select a note to start. </h3>";
 
-    currentFolderName = {   //saves the name of the folder by taking all readable text from the html and removes the two last charakters in the string whitch is always: - and \n
+    currentFolderName = {   //saves the name of the folder by taking all readable text from the html and removes the two last characters in the string which is always: - and \n
         name: document.getElementById("folderElement" + index).innerText.substr(0, document.getElementById("folderElement" + index).innerText.length - 2)
     }
     

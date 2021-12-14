@@ -1,3 +1,5 @@
+// Renders the writing field. Checks with if/else statements if it needs to render just textarea or also images/files.
+// Uses the currentNoteName variable to check and also display what the current note contains.
 function renderWritingField() {
     if (currentNoteName.content == null){
         document.querySelector("#writingfield").innerHTML = `<textarea id=textArea placeholder= "Write here..."></textarea>`
