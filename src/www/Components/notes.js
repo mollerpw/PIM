@@ -57,20 +57,24 @@ function addNotePrompt(){
 }
 
 async function addNote(){
-    let noteNameToAdd = {
+
+    let noteNameToAdd = {  // saves the name of the note 
         name: document.getElementById("noteInput").value,
         folder: currentFolderName.name
     };
-    let rawResponse = await fetch('/notes', {
+
+    let rawResponse = await fetch('/notes', {   // attempts to add the note to the database
         method: "POST",
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(noteNameToAdd)
     });
+
     let response = await rawResponse.json();
-    if (response === false) {
+
+    if (response == false) { // checks if the note exists in the database 
         alert("A note with this name already exist in current folder")
     }else {
-        document.getElementById("noteInput").remove();
+        document.getElementById("noteInput").remove();  //(line 77 and 78) removes the pormpts
         document.getElementById("noteButton").remove();
         renderNotes(currentFolderName.name)
         notePrompt = false;
@@ -79,7 +83,7 @@ async function addNote(){
 
 async function currentNote(index) {
     saveNote();
-    currentNoteName = {
+    currentNoteName = {     // saves the note name you clicked
         name: document.getElementById("noteButton" + index).innerText,
         content: ""
     }
@@ -94,7 +98,7 @@ async function currentNote(index) {
         uploadFile: tempContent.uploadFile
     }
     
-    for(let i = 0;i < noteButton.length;i++){
+    for(let i = 0;i < noteButton.length;i++){   // (line 101-105) makes the color of the note you clicked on blue
         document.getElementById(noteButton[i]).style.backgroundColor = "#bdc2bd";
     }
 
@@ -104,7 +108,8 @@ async function currentNote(index) {
     renderHeader();
 }
 
-async function updateCurrentContent() {
+// returns the note object of the note you clicked on by comparing every note's name in the database with the one saved on line 86
+async function updateCurrentContent() { 
     let JSONNoteNames = await (await fetch('/notes')).json();
 
     for(let noteName of JSONNoteNames){
