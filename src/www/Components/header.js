@@ -1,5 +1,4 @@
 function renderHeader() {
-    document.querySelector("header").innerHTML = "";
     document.querySelector("header").innerHTML = `
     <h1>PIM</h1>
     <nav>
@@ -38,7 +37,6 @@ async function saveNote(){
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(savedNote)
         });
-        //let response = await result.json();
     }
 }
 
@@ -53,12 +51,7 @@ async function deleteNote(){
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(deletedNote)
     });
-    //let response = await result.json();
-    currentNoteName = {
-        id: "",
-        name: "",
-        content: ""
-    }
+    
     renderNotes(currentFolderName.name);
     document.querySelector("header").innerHTML = "<h1>PIM</h1>";
     document.querySelector("#writingfield").innerHTML = "<h3> Create a new note or select a note to start. </h3>";
@@ -114,7 +107,6 @@ async function insertFile(e) {
         body: formData
     });
     let uploadFile = await uploadResult.text();
-    console.log(uploadFile);
 
     let notes = {
         id: currentNoteName.id,

@@ -1,5 +1,8 @@
 let folderPrompt = false;
 let folderButton = [];
+let currentFolderName = {
+    name: ""
+};
 async function renderFolder() {
     let JSONfoldernames = await (await fetch('/folders')).json();
     let output = "";
@@ -65,9 +68,6 @@ async function deleteFolder(index){
     location.reload();
 }
 
-let currentFolderName = {
-    name: ""
-}
 
 function currentFolder(index) {
     saveNote();
@@ -85,12 +85,7 @@ function currentFolder(index) {
         document.getElementById(folderButton[i]).style.backgroundColor = "#bdc2bd";
         
     }
-        document.getElementById("folderButton" + index).style.backgroundColor = "rgb(39, 39, 151)";
+    document.getElementById("folderButton" + index).style.backgroundColor = "rgb(39, 39, 151)";
 
-    currentNoteName = {
-        name: "",
-        content: "",
-        id: ""
-    }
     renderNotes(currentFolderName.name);
 }
