@@ -121,6 +121,7 @@ public class Database {
         }
     }
 
+    // Receives a note and deletes it
     public boolean deleteNote(Note note) {
         try {
             PreparedStatement stmt = conn.prepareStatement("DELETE FROM Notes WHERE id = ?");
@@ -134,6 +135,7 @@ public class Database {
         }
     }
 
+    // Receives a folder name and deletes the folder and all notes with that folder name
     public boolean deleteFolder(String folder) {
         try {
             PreparedStatement stmt = conn.prepareStatement("DELETE FROM Notes WHERE folder = ?");
@@ -147,7 +149,8 @@ public class Database {
             e.printStackTrace();
             return false;
         }
-    }       
+    }
+
     // Receives an image and puts it into /images folder and saves the path
     public String uploadImage(FileItem image) {
         String imageUrl = "/images/" + image.getName();
@@ -161,8 +164,8 @@ public class Database {
 
         return imageUrl;
     }
-    //method for deleting files
-    //gets the imageURL and the id of the note then sets imageURL to NULL
+
+    // Receives the imageURL and the id of a note then sets imageURL to NULL
     public boolean deleteImage(String imageUrl, String id) {
         try {
             PreparedStatement stmt = conn.prepareStatement("UPDATE Notes SET imageURL = NULL WHERE id = ?");
@@ -187,8 +190,7 @@ public class Database {
         return uploadFile;
     }
 
-    //method for deleting files
-    //gets the uploadedFile and the id of the note then sets uploadFile to NULL
+    // Receives the uploadedFile and the id of a note then sets uploadFile to NULL
     public boolean deleteFile(String uploadFile, String id) {
 
         try {
