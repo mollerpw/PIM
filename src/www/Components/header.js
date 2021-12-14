@@ -20,7 +20,8 @@ function renderHeader() {
 
     </nav>`
 }
-
+// Saves the current text in textArea if there is any,
+// and sends an update request to an endpoint with the savedNote object
 async function saveNote(){
     if(document.querySelector("#textArea") != null){
         let savedNote = {
@@ -56,9 +57,11 @@ async function deleteNote(){
     document.querySelector("header").innerHTML = "<h1>PIM</h1>";
     document.querySelector("#writingfield").innerHTML = "<h3> Create a new note or select a note to start. </h3>";
 }
-
+// This function posts the picture information
+// and sends an update request to an endpoint with the picture
 async function insertPicture(e) {
     e.preventDefault();
+    saveNote();
     let files = document.querySelector('#picture').files;
     let formData = new FormData();
 
@@ -92,9 +95,11 @@ async function insertPicture(e) {
     })
     renderWritingField();
 }
-
+// This function posts the file information
+// and sends an update request to an endpoint with the file
 async function insertFile(e) {
     e.preventDefault();
+    saveNote();
     let files = document.querySelector('#file').files;
     let formData = new FormData();
 
@@ -128,7 +133,8 @@ async function insertFile(e) {
     })
     renderWritingField();
 }
-
+// Removes the picture and sends an update
+// request to an endpoint without the picture
 async function deletePicture() {
     let deletedPicture = {
         id: currentNoteName.id,
@@ -144,7 +150,8 @@ async function deletePicture() {
     currentNoteName.imageURL = null;
     renderWritingField();
 }
-
+// Removes the file and sends an update
+// request to an endpoint without the file
 async function deleteFile() {
     let deletedFile = {
         id: currentNoteName.id,

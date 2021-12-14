@@ -18,12 +18,16 @@ public class Main {
         Database db = new Database();
         Express app = new Express();
 
+        // Requests the body of the json and creates a Note object with that information,
+        // sends note object to updateNote method
+        // and responds with the result
        app.put("/notes", (req, res) -> {
            Note notes = (Note) req.getBody(Note.class);
            res.json(db.updateNote(notes));
        });
 
-
+        // Receives a list from db.Read and puts it into a new list and
+        // sends it as a json to /notes
         app.get("/notes", (req, res) -> {
 
             List<Note> notes= db.Read();
@@ -31,25 +35,28 @@ public class Main {
 
         });
 
+        // Receives a list from db.readFolder and
+        // puts it into a new list and
+        // sends it as a json to /folders
         app.get("/folders", (req, res) -> {
             List<Folder> folders = db.readFolder();
             res.json(folders);
 
         });
-
+        // Uploads an image to /notes/pictures
         app.post("/notes/pictures", (req, res) -> {
            String imageUrl = null;
 
             try {
-                List<FileItem> files = req.getFormData("files");
-                imageUrl = db.uploadImage(files.get(0));
+                List<FileItem> files = req.getFormData("files"); // puts image into list
+                imageUrl = db.uploadImage(files.get(0)); // gets the first (only) image
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (FileUploadException e) {
                 e.printStackTrace();
             }
 
-            res.send(imageUrl);
+            res.send(imageUrl); // sends the image as a string
         });
 
         app.post("/notes/files", (req, res) -> {

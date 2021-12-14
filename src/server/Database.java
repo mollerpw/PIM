@@ -147,7 +147,7 @@ public class Database {
             return false;
         }
     }       
-
+    // Receives an image and puts it into /images folder and saves the path
     public String uploadImage(FileItem image) {
         String imageUrl = "/images/" + image.getName();
 
