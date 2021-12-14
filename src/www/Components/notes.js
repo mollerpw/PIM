@@ -1,6 +1,14 @@
 
 let notePrompt = false;
 
+let currentNoteName = {
+    id: "",
+    name: "",
+    content: "",
+    imageURL: "",
+    uploadFile: ""
+}
+
 let noteButton = [];
 async function renderNotes(folderName) {
     let outputNote = "";
@@ -67,14 +75,6 @@ async function addNote(){
         renderNotes(currentFolderName.name)
         notePrompt = false;
     }
-}
-
-let currentNoteName = {
-    id: "",
-    name: "",
-    content: "",
-    imageURL: "",
-    uploadFile: ""
 }
 
 async function currentNote(index) {
