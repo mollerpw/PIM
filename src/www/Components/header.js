@@ -42,18 +42,17 @@ async function saveNote(){
 }
 
 async function deleteNote(){
-    let deletedNote = {
+    let deletedNote = {     // saves the id of the note you whant to delete
         id: currentNoteName.id
-
     }
 
-    let result = await fetch("/notes", {
+    let result = await fetch("/notes", {    //deletes the note in the database
         method: "DELETE",
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(deletedNote)
     });
     
-    renderNotes(currentFolderName.name);
+    renderNotes(currentFolderName.name);    //(line 55-57) rerenders the notes, removes the header buttons
     document.querySelector("header").innerHTML = "<h1>PIM</h1>";
     document.querySelector("#writingfield").innerHTML = "<h3> Create a new note or select a note to start. </h3>";
 }
