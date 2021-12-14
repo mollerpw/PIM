@@ -98,10 +98,9 @@ async function currentNote(index) {
         uploadFile: tempContent.uploadFile
     }
     
-    for(let i = 0;i < noteButton.length;i++){   // (line 101-105) makes the color of the note you clicked on blue
+    for(let i = 0;i < noteButton.length;i++){   // (line 101-104) makes the color of the note you clicked on blue
         document.getElementById(noteButton[i]).style.backgroundColor = "#bdc2bd";
     }
-
     document.getElementById("noteButton" + index).style.backgroundColor = "rgb(39, 39, 151)";
 
     renderWritingField();
