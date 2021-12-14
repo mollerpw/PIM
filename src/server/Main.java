@@ -98,6 +98,10 @@ public class Main {
             res.json(db.deleteNote(notes));
         });
 
+        // Requests the body of the json and creates a Note object with that information
+        // gets id and imageURL from notes
+        // send id and imageURL to deleteImage method
+        // sends the result of deleteImage
         app.put("/notes/pictures", (req, res) -> {
             Note notes = (Note) req.getBody(Note.class);
             String id = notes.getId();
@@ -105,6 +109,10 @@ public class Main {
             res.json(db.deleteImage(imageUrl, id));
         });
 
+        //Requests the body of json and creates a Note object with that information
+        //gets id and uploadFile from notes
+        //sends id and uploadFile to deleteFile method
+        //responds the results of deleteFile
         app.put("/notes/files", (req, res) -> {
             Note notes = (Note) req.getBody(Note.class);
             String id = notes.getId();

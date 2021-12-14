@@ -160,7 +160,8 @@ public class Database {
 
         return imageUrl;
     }
-
+    //method for deleting files
+    //gets the imageURL and the id of the note then sets imageURL to NULL
     public boolean deleteImage(String imageUrl, String id) {
         try {
             PreparedStatement stmt = conn.prepareStatement("UPDATE Notes SET imageURL = NULL WHERE id = ?");
@@ -185,6 +186,8 @@ public class Database {
         return uploadFile;
     }
 
+    //method for deleting files
+    //gets the uploadedFile and the id of the note then sets uploadFile to NULL
     public boolean deleteFile(String uploadFile, String id) {
 
         try {
