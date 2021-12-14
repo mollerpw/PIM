@@ -148,7 +148,7 @@ public class Database {
             return false;
         }
     }       
-    // Receives an image and puts it into /images folder and saves the path
+    // Receives an image and puts it into /images folder and returns the path as a string
     public String uploadImage(FileItem image) {
         String imageUrl = "/images/" + image.getName();
 
@@ -173,7 +173,7 @@ public class Database {
             return false;
         }
     }
-    // Receives a file and puts it into /files folder and saves the path
+    // Receives a file and puts it into /files folder and returns the path as a string
     public String uploadFile(FileItem file) {
         String uploadFile = "/files/" + file.getName();
 
