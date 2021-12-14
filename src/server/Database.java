@@ -56,7 +56,8 @@ public class Database {
         return folders;
     }
 
-
+    // Receives a note object and updates the specific note with the new information
+    // and returns true if successful
     public boolean updateNote(Note note) {
         try {
             PreparedStatement stmt = conn.prepareStatement("UPDATE notes SET content = ? , timestamp ='" + LocalDateTime.now() + "', imageURL = ? , uploadFile = ? WHERE id = ?");
@@ -172,7 +173,7 @@ public class Database {
             return false;
         }
     }
-
+    // Receives a file and puts it into /files folder and saves the path
     public String uploadFile(FileItem file) {
         String uploadFile = "/files/" + file.getName();
 

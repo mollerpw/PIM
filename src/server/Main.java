@@ -58,26 +58,30 @@ public class Main {
 
             res.send(imageUrl); // sends the image as a string
         });
-
+        // Uploads a file to /notes/files
         app.post("/notes/files", (req, res) -> {
            String uploadFile = null;
 
            try {
-               List<FileItem> files = req.getFormData("files");
-               uploadFile = db.uploadFile(files.get(0));
+               List<FileItem> files = req.getFormData("files"); // Requests the formData
+               uploadFile = db.uploadFile(files.get(0)); // gets the first (only) file
            } catch (IOException e) {
                e.printStackTrace();
            } catch (FileUploadException e) {
                e.printStackTrace();
            }
-           res.send(uploadFile);
+           res.send(uploadFile); // sends the image as a string
         });
-
+        // Requests the body of the json and creates a Note object with that information,
+        // sends note object to Create method
+        // and responds with the result
         app.post("/notes", (req, res) -> {
             Note notes = (Note) req.getBody(Note.class);
             res.json(db.Create(notes));
         });
-
+        // Requests the body of the json and creates a folder object with that information,
+        // sends folder object to createFolder method
+        // and responds with the result
         app.post("/folders", (req, res) -> {
             Folder folder = (Folder) req.getBody(Folder.class);
             String folderName = folder.getName();
