@@ -15,9 +15,11 @@ async function renderNotes(folderName) {
     let HTMLpos = "";
     let HTMLorigin = "";
     
-    let JSONNoteNames = await (await fetch('/notes')).json();
+    let JSONNoteNames = await (await fetch('/notes')).json(); // fetches every note in the database
 
-    if(document.querySelector("#notes") == null){
+    //checks if the note div exists, if it doesn't: it adds the div after the folder div. 
+    //if it does: it re adds the note title with the add note button and at the same time removes every note in the list
+    if(document.querySelector("#notes") == null){   
         outputNote = `<div class="notes" id="notes">
         <h2>Notes <button class="addButton" onClick="addNotePrompt()">+</button> </h2>`;
         HTMLpos = "afterend";
@@ -29,11 +31,11 @@ async function renderNotes(folderName) {
         HTMLorigin = "#notes";
         document.querySelector("#notes").innerHTML = '<h2>Notes <button class="addButton" onClick="addNotePrompt()">+</button> </h2>';
     }
-    
+    // go's through every note and adds the notes in the current folder the html element in the form of a string to the outputNote variable
     let index = 0;
     for(let noteName of JSONNoteNames){
         if (noteName.folder == folderName) {
-            noteButton[index] = "noteButton" + index;
+            noteButton[index] = "noteButton" + index; // adds the notebutton in an array so we can identify it when we want to change color of it when you click it
             outputNote += `
                 <button class="noteButton" id="noteButton${index}" onClick="currentNote(${index})">${noteName.name}</button> <br>
             `;
@@ -55,20 +57,24 @@ function addNotePrompt(){
 }
 
 async function addNote(){
-    let noteNameToAdd = {
+
+    let noteNameToAdd = {  // saves the name of the note 
         name: document.getElementById("noteInput").value,
         folder: currentFolderName.name
     };
-    let rawResponse = await fetch('/notes', {
+
+    let rawResponse = await fetch('/notes', {   // attempts to add the note to the database
         method: "POST",
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(noteNameToAdd)
     });
+
     let response = await rawResponse.json();
-    if (response === false) {
+
+    if (response == false) { // checks if the note exists in the database 
         alert("A note with this name already exist in current folder")
     }else {
-        document.getElementById("noteInput").remove();
+        document.getElementById("noteInput").remove();  //(line 77 and 78) removes the pormpts
         document.getElementById("noteButton").remove();
         renderNotes(currentFolderName.name)
         notePrompt = false;
@@ -77,7 +83,7 @@ async function addNote(){
 
 async function currentNote(index) {
     saveNote();
-    currentNoteName = {
+    currentNoteName = {     // saves the note name you clicked
         name: document.getElementById("noteButton" + index).innerText,
         content: ""
     }
@@ -92,17 +98,17 @@ async function currentNote(index) {
         uploadFile: tempContent.uploadFile
     }
     
-    for(let i = 0;i < noteButton.length;i++){
+    for(let i = 0;i < noteButton.length;i++){   // (line 101-104) makes the color of the note you clicked on blue
         document.getElementById(noteButton[i]).style.backgroundColor = "#bdc2bd";
     }
-
     document.getElementById("noteButton" + index).style.backgroundColor = "rgb(39, 39, 151)";
 
     renderWritingField();
     renderHeader();
 }
 
-async function updateCurrentContent() {
+// returns the note object of the note you clicked on by comparing every note's name in the database with the one saved on line 86
+async function updateCurrentContent() { 
     let JSONNoteNames = await (await fetch('/notes')).json();
 
     for(let noteName of JSONNoteNames){
