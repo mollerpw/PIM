@@ -108,6 +108,7 @@ public class Main {
         // Requests the body of the json and creates a Note object with that information
         // sends Note objects to deleteImage method
         // responds with the result of deleteImage
+        // TODO remove the physical image on the server
         app.put("/notes/pictures", (req, res) -> {
             Note notes = (Note) req.getBody(Note.class);
             String id = notes.getId();
