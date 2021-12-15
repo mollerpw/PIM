@@ -4,7 +4,11 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import express.utils.Utils;
 import org.apache.commons.fileupload.FileItem;
 
+import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.*;
 import java.time.LocalDateTime;
@@ -174,9 +178,15 @@ public class Database {
         try {
             PreparedStatement stmt = conn.prepareStatement("UPDATE Notes SET imageURL = NULL WHERE id = ?");
             stmt.setString(1, id);
+            File image = new File(imageUrl);
+            Path path = Paths.get("src/www" + image);
+            Files.delete(path);
             stmt.executeUpdate();
             return true;
         }catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }catch (IOException e) {
             e.printStackTrace();
             return false;
         }
@@ -201,12 +211,18 @@ public class Database {
         try {
             PreparedStatement stmt = conn.prepareStatement("UPDATE Notes SET uploadFile = NULL WHERE id = ?");
             stmt.setString(1, id);
+            File file = new File(uploadFile);
+            Path path = Paths.get("src/www" + file);
+            Files.delete(path);
             stmt.executeUpdate();
             return true;
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
+        }catch (IOException e) {
+            e.printStackTrace();
+            return false;
         }
-        return false;
     }
 
 }
