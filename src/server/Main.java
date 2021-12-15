@@ -5,7 +5,10 @@ import express.middleware.Middleware;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import java.nio.file.Paths;
@@ -112,6 +115,13 @@ public class Main {
             Note notes = (Note) req.getBody(Note.class);
             String id = notes.getId();
             String imageUrl = notes.getImageURL();
+            File image = new File(imageUrl);
+            try {
+                Path path = Paths.get("src/www" + image);
+                Files.delete(path);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
             res.json(db.deleteImage(imageUrl, id));
         });
 
@@ -122,6 +132,13 @@ public class Main {
             Note notes = (Note) req.getBody(Note.class);
             String id = notes.getId();
             String uploadFile = notes.getUploadFile();
+            File file = new File(uploadFile);
+            try {
+                Path path = Paths.get("src/www" + file);
+                Files.delete(path);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
             res.json(db.deleteFile(uploadFile, id));
         });
 
