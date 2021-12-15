@@ -72,6 +72,7 @@ h2 {
 
 .folder {
 flex: 1;
+height: 89vh;
 }
 
 .notes {
@@ -81,8 +82,8 @@ flex: 1;
 
 .writingfield {
     flex: 5;
-
 }
+
 #imgFileDiv {
     display: flex;
     border: none;
