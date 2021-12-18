@@ -64,25 +64,23 @@ h2 {
     margin-right: 1vh;
 }
 .noteCSS {
-
-
     margin-left: 1vh;
     margin-right: 1vh;
 }
 
 .folder {
 flex: 1;
+height: 89vh;
 }
 
 .notes {
     flex: 1;
-
 }
 
 .writingfield {
     flex: 5;
-
 }
+
 #imgFileDiv {
     display: flex;
     border: none;
@@ -111,9 +109,9 @@ flex: 1;
 .headerButton:hover {
     background-color:rgb(65, 65, 197)
 }
+
 .noteButton {
     margin-bottom: 10px;
-
 }
 
 img {
@@ -143,7 +141,6 @@ img:hover {
 
 
 .deleteFolderButton {
-
     background-color: #bdc2bd; 
     border: none;
     color: white;
@@ -156,7 +153,7 @@ img:hover {
 
 .deleteFolderButton:hover {
     background-color:rgb(65, 65, 197)
-    }
+}
 
 .noteButton {
     background-color: #bdc2bd; 
@@ -175,9 +172,8 @@ img:hover {
 
 input[type="file"] {
     display: flex;
-    
-    
 }
+
 #file {
     
     border-radius: 8px;
@@ -210,8 +206,8 @@ input[type="file"] {
     display: flex;
     align-items: flex-end;
     text-decoration: none;
-    
 }
+
 #downloadATag {
     display: flex;
     align-items: flex-end;
@@ -223,8 +219,8 @@ input[type="file"] {
 }
 .addButton {
     border-radius: 4px;
-    
 }
+
 button {
     cursor:pointer;
 }
